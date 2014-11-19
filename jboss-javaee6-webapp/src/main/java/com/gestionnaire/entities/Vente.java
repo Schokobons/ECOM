@@ -1,31 +1,25 @@
-package com.entities;
+package com.gestionnaire.entities;
 
 import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity(name = "venteEnCours")
-public class VenteEnCours implements Serializable {
+@Entity(name = "vente")
+public class Vente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private int idVente;
-	private int idClient;
+	private int idAcheteur;
+	private int idVendeur;
 	private int idObjet;
 	private int prix;
 
-	public VenteEnCours() {
+	public Vente() {
 		super();
 	}
 
-	public int getIdClient() {
-		return idClient;
-	}
-
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
-	}
 
 	public int getIdObjet() {
 		return idObjet;
@@ -41,6 +35,22 @@ public class VenteEnCours implements Serializable {
 
 	public void setPrix(int prix) {
 		this.prix = prix;
+	}
+
+	public int getIdAcheteur() {
+		return idAcheteur;
+	}
+
+	public void setIdAcheteur(int idAcheteur) {
+		this.idAcheteur = idAcheteur;
+	}
+
+	public int getIdVendeur() {
+		return idVendeur;
+	}
+
+	public void setIdVendeur(int idVendeur) {
+		this.idVendeur = idVendeur;
 	}
 	
 
