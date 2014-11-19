@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity(name = "categories")
+@SuppressWarnings("serial")
+@Entity
+@XmlRootElement
+@Table
 public class Categories implements Serializable {
 
-	private static final long serialVersionUID = 1L;
 
 	public Categories() {
 		super();

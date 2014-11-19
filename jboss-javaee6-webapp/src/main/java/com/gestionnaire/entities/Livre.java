@@ -3,13 +3,21 @@ package com.gestionnaire.entities;
 
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -28,46 +36,40 @@ public class Livre implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private Long idLivre;
 
     @NotNull
     @NotEmpty
     @Size(min = 1, max = 255)
     private String name;
-
-    @NotNull
-    @NotEmpty
-    @Size(min = 1, max = 255)
-    private String auteur;    
+   
 
     @NotNull
     @NotEmpty
     @Pattern(regexp = "[0-9]*", message = "Doit contenir des chiffres")
     private String  nb_pages;
+    	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="venteLivre")
+	private Vente idVente;
+	
+	@OneToMany(mappedBy="livre")
+	private List<Chapitre> chapitres;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-	public String getAuteur() {
-		return auteur;
+	public Long getIdLivre() {
+		return idLivre;
 	}
 
-	public void setAuteur(String auteur) {
-		this.auteur = auteur;
+	public void setIdLivre(Long idLivre) {
+		this.idLivre = idLivre;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getNb_pages() {
@@ -78,5 +80,23 @@ public class Livre implements Serializable {
 		this.nb_pages = nb_pages;
 	}
 
+	public Vente getIdVente() {
+		return idVente;
+	}
+
+	public void setIdVente(Vente idVente) {
+		this.idVente = idVente;
+	}
+
+	public List<Chapitre> getChapitres() {
+		return chapitres;
+	}
+
+	public void setChapitres(List<Chapitre> chapitres) {
+		this.chapitres = chapitres;
+	}
+	
+
+    
     
 }

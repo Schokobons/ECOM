@@ -10,24 +10,27 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@SuppressWarnings("serial")
 @Entity(name = "enchere")
+@XmlRootElement
+@Table
 public class Enchere implements Serializable {
-	private static final long serialVersionUID = 1L;
+	
 
 	@Id
 	private int idEnchere;
-	
-	private int nomtantActuel;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idLivre")
 	private Livre livre;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="encheres")
+	@JoinColumn(name="encheresProposer")
 	private Client clientCreator;
 	
 	@OneToMany(mappedBy="enchere")
@@ -38,6 +41,8 @@ public class Enchere implements Serializable {
 	
 	@Temporal(TemporalType.TIMESTAMP)
     protected Date endDate;
+	
+	private int nomtantActuel;
 
 
 }
