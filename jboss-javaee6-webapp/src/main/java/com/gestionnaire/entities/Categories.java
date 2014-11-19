@@ -1,34 +1,28 @@
 package com.gestionnaire.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @SuppressWarnings("serial")
-@Entity
+@Entity(name = "categories")
 @XmlRootElement
 @Table
 public class Categories implements Serializable {
 
 
-	public Categories() {
-		super();
-	}
-	
-
 	@Id
+	private int idCategories;
 	private String nom;
-	private int idObjet;
 	
-	public int getIdObjet() {
-		return idObjet;
-	}
-	public void setIdObjet(int idObjet) {
-		this.idObjet = idObjet;
-	}
+	@ManyToMany(mappedBy="categories")
+	private List<Livre> livres;
+	
 
 
 

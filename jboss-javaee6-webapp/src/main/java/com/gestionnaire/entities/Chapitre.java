@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @SuppressWarnings("serial")
-@Entity
+@Entity(name = "chapitre")
 @XmlRootElement
 @Table
 public class Chapitre implements Serializable {

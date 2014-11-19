@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -55,6 +57,22 @@ public class Livre implements Serializable {
 	
 	@OneToMany(mappedBy="livre")
 	private List<Chapitre> chapitres;
+	
+	@ManyToMany
+	@JoinTable(
+	      name="livreAuteur",
+	      joinColumns={@JoinColumn(name="id_Auteur", referencedColumnName="idAuteur")},
+	      inverseJoinColumns={@JoinColumn(name="id_Livre", referencedColumnName="idLivre")})
+	  private List<Auteur> auteurs;
+	
+	@ManyToMany
+	@JoinTable(
+	      name="livreCategories",
+	      joinColumns={@JoinColumn(name="id_Auteur", referencedColumnName="idAuteur")},
+	      inverseJoinColumns={@JoinColumn(name="id_Categories", referencedColumnName="idCategories")})
+	private List<Auteur> categories;
+	
+	
 
 	public Long getIdLivre() {
 		return idLivre;
