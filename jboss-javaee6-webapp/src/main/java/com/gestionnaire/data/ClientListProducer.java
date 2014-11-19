@@ -25,7 +25,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.gestionnaire.entities.Client;
-import com.gestionnaire.entities.Member;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class ClientListProducer {
         return clients;
     }
 
-    public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Member client) {
+    public void onMemberListChanged(@Observes(notifyObserver = Reception.IF_EXISTS) final Client client) {
         retrieveAllMembersOrderedByName();
     }
 
