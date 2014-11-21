@@ -61,16 +61,16 @@ public class Livre implements Serializable {
 	@ManyToMany
 	@JoinTable(
 	      name="livreAuteur",
-	      joinColumns={@JoinColumn(name="id_Auteur", referencedColumnName="idAuteur")},
-	      inverseJoinColumns={@JoinColumn(name="id_Livre", referencedColumnName="idLivre")})
+	      joinColumns={@JoinColumn(name="id_Livre", referencedColumnName="idLivre")},
+	      inverseJoinColumns={@JoinColumn(name="id_Auteur", referencedColumnName="idAuteur")})
 	  private List<Auteur> auteurs;
 	
 	@ManyToMany
 	@JoinTable(
 	      name="livreCategories",
-	      joinColumns={@JoinColumn(name="id_Auteur", referencedColumnName="idAuteur")},
+	      joinColumns={@JoinColumn(name="id_Livre", referencedColumnName="idLivre")},
 	      inverseJoinColumns={@JoinColumn(name="id_Categories", referencedColumnName="idCategories")})
-	private List<Auteur> categories;
+	private List<Categories> categories;
 	
 	
 
