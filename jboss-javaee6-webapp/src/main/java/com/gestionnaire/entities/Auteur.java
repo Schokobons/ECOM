@@ -18,7 +18,7 @@ public class Auteur implements Serializable {
 	
 	
 	@Id
-	private int idAuteur;
+	private Long idAuteur;
 	private String nom;
 	private String prenom;
 	

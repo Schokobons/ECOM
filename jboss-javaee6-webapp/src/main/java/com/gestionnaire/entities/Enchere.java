@@ -23,7 +23,7 @@ public class Enchere implements Serializable {
 	
 
 	@Id
-	private int idEnchere;
+	private Long idEnchere;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idLivre")

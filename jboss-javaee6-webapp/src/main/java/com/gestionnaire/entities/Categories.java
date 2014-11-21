@@ -17,7 +17,7 @@ public class Categories implements Serializable {
 
 
 	@Id
-	private int idCategories;
+	private Long idCategories;
 	private String nom;
 	
 	@ManyToMany(mappedBy="categories")

@@ -27,12 +27,6 @@ public class Vente implements Serializable {
 
     @NotNull
     @NotEmpty
-    @Size(min = 1, max = 255)
-    private String name;
-   
-
-    @NotNull
-    @NotEmpty
     @Pattern(regexp = "[0-9]*", message = "Doit contenir des chiffres")
     private String  nb_pages;
     	
