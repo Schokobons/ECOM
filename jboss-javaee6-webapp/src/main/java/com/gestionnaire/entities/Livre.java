@@ -31,7 +31,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @SuppressWarnings("serial")
-@Entity
+@Entity(name = "livre")
 @XmlRootElement
 @Table
 public class Livre implements Serializable {
@@ -49,11 +49,11 @@ public class Livre implements Serializable {
     @NotNull
     @NotEmpty
     @Pattern(regexp = "[0-9]*", message = "Doit contenir des chiffres")
-    private String  nb_pages;
+    private String  nbPages;
     	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="venteLivre")
-	private Vente idVente;
+	@JoinColumn(name="ventelivre")
+	private Commande idVenteLivre;
 	
 	@OneToMany(mappedBy="livre")
 	private List<Chapitre> chapitres;
@@ -71,8 +71,6 @@ public class Livre implements Serializable {
 	      joinColumns={@JoinColumn(name="id_Livre", referencedColumnName="idLivre")},
 	      inverseJoinColumns={@JoinColumn(name="id_Categories", referencedColumnName="idCategories")})
 	private List<Categories> categories;
-	
-	
 
 	public Long getIdLivre() {
 		return idLivre;
@@ -90,20 +88,20 @@ public class Livre implements Serializable {
 		this.name = name;
 	}
 
-	public String getNb_pages() {
-		return nb_pages;
+	public String getNbPages() {
+		return nbPages;
 	}
 
-	public void setNb_pages(String nb_pages) {
-		this.nb_pages = nb_pages;
+	public void setNbPages(String nbPages) {
+		this.nbPages = nbPages;
 	}
 
-	public Vente getIdVente() {
-		return idVente;
+	public Commande getIdVenteLivre() {
+		return idVenteLivre;
 	}
 
-	public void setIdVente(Vente idVente) {
-		this.idVente = idVente;
+	public void setIdVenteLivre(Commande idVenteLivre) {
+		this.idVenteLivre = idVenteLivre;
 	}
 
 	public List<Chapitre> getChapitres() {
@@ -113,8 +111,24 @@ public class Livre implements Serializable {
 	public void setChapitres(List<Chapitre> chapitres) {
 		this.chapitres = chapitres;
 	}
-	
 
+	public List<Auteur> getAuteurs() {
+		return auteurs;
+	}
+
+	public void setAuteurs(List<Auteur> auteurs) {
+		this.auteurs = auteurs;
+	}
+
+	public List<Categories> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Categories> categories) {
+		this.categories = categories;
+	}
+	
+	
     
     
 }

@@ -28,11 +28,53 @@ public class Chapitre implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="venteChapitre")
-	private Vente idVente;
+	private Commande idVenteChapitre;
 	
-	private String number;
+	private String numeroChapitre;
 	
-	private String nb_page;
+	private String nbPage;
+
+	public Long getIdChapitre() {
+		return idChapitre;
+	}
+
+	public void setIdChapitre(Long idChapitre) {
+		this.idChapitre = idChapitre;
+	}
+
+	public Livre getLivre() {
+		return livre;
+	}
+
+	public void setLivre(Livre livre) {
+		this.livre = livre;
+	}
+
+	public Commande getIdVenteChapitre() {
+		return idVenteChapitre;
+	}
+
+	public void setIdVenteChapitre(Commande idVenteChapitre) {
+		this.idVenteChapitre = idVenteChapitre;
+	}
+
+	public String getNumeroChapitre() {
+		return numeroChapitre;
+	}
+
+	public void setNumeroChapitre(String numeroChapitre) {
+		this.numeroChapitre = numeroChapitre;
+	}
+
+	public String getNbPage() {
+		return nbPage;
+	}
+
+	public void setNbPage(String nbPage) {
+		this.nbPage = nbPage;
+	}
+	
+	
 	
 	
 	

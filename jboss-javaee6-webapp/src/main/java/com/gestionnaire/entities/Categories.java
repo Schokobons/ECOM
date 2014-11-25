@@ -22,8 +22,33 @@ public class Categories implements Serializable {
 	
 	@ManyToMany(mappedBy="categories")
 	private List<Livre> livres;
+
+	public Long getIdCategories() {
+		return idCategories;
+	}
+
+	public void setIdCategories(Long idCategories) {
+		this.idCategories = idCategories;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public List<Livre> getLivres() {
+		return livres;
+	}
+
+	public void setLivres(List<Livre> livres) {
+		this.livres = livres;
+	}
 	
 
+	
 
 
 }

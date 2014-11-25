@@ -39,16 +39,56 @@ public class ListeParticipant implements Serializable {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="participants")
-	private Enchere enchere;
+	private Commande enchere;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="participations")
 	private Client client;
 	
-	private float valeurProposer;
+	private float montantProposer;
 	
 	@Temporal(TemporalType.TIMESTAMP)
     protected Date timeEncherie;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Commande getEnchere() {
+		return enchere;
+	}
+
+	public void setEnchere(Commande enchere) {
+		this.enchere = enchere;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public float getMontantProposer() {
+		return montantProposer;
+	}
+
+	public void setMontantProposer(float montantProposer) {
+		this.montantProposer = montantProposer;
+	}
+
+	public Date getTimeEncherie() {
+		return timeEncherie;
+	}
+
+	public void setTimeEncherie(Date timeEncherie) {
+		this.timeEncherie = timeEncherie;
+	}
 	
 	
     

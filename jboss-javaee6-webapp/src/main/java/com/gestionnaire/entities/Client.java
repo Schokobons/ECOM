@@ -57,13 +57,10 @@ public class Client implements Serializable {
 	private List<ListeParticipant> participations;
 	
 	@OneToMany(mappedBy="clientCreator")
-	private List<Enchere> encheresProposer;
+	private List<Commande> ventesProposer;
 	
-	@OneToMany(mappedBy="acheteur")
-	private List<Panier> achats;
-	
-	@OneToMany(mappedBy="vendeur")
-	private List<Vente> ventes;
+	@OneToMany(mappedBy="clientAcheteur")
+	private List<Commande> achatsFait;
 
 	public Long getIdClient() {
 		return idClient;
@@ -113,15 +110,24 @@ public class Client implements Serializable {
 		this.participations = participations;
 	}
 
-	public List<Enchere> getEncheres() {
-		return encheresProposer;
+	public List<Commande> getVentesProposer() {
+		return ventesProposer;
 	}
 
-	public void setEncheres(List<Enchere> encheres) {
-		this.encheresProposer = encheres;
+	public void setVentesProposer(List<Commande> ventesProposer) {
+		this.ventesProposer = ventesProposer;
+	}
+
+	public List<Commande> getAchatsFait() {
+		return achatsFait;
+	}
+
+	public void setAchatsFait(List<Commande> achatsFait) {
+		this.achatsFait = achatsFait;
 	}
 	
-	
+
+
 	
 	
 }

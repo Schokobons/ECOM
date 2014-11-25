@@ -37,14 +37,10 @@
                 <h:inputText id="name" value="#{newLivre.name}" />
                 <h:message for="name" errorClass="invalid" />
 
-                <h:outputLabel for="auteurs" value="Id auteur " />
-                <h:inputText id="auteurs" value="#{newLivre.auteur}" />
+                <h:outputLabel for="auteurs" value="Nom auteur " />
+                <h:inputText id="auteurs" value="#{newLivre.auteurs}" />
                 <h:message for="auteurs" errorClass="invalid" />
 
-                <h:outputLabel for="nb_pages" value="# pages :" />
-                <h:inputText id="nb_pages"
-                    value="#{newLivre.nb_pages}" />
-                <h:message for="nb_pages" errorClass="invalid" />
             </h:panelGrid>
 
             <p>
