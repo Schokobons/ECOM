@@ -50,13 +50,12 @@ public class Livre implements Serializable {
     @NotEmpty
     @Pattern(regexp = "[0-9]*", message = "Doit contenir des chiffres")
     private String  nbPages;
-    	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="ventelivre")
-	private Commande idVenteLivre;
 	
 	@OneToMany(mappedBy="livre")
 	private List<Chapitre> chapitres;
+	
+	@OneToMany(mappedBy="ventelivre")
+	private List<Commande> idVenteLivre;
 	
 	@ManyToMany
 	@JoinTable(
@@ -96,11 +95,12 @@ public class Livre implements Serializable {
 		this.nbPages = nbPages;
 	}
 
-	public Commande getIdVenteLivre() {
+
+	public List<Commande> getIdVenteLivre() {
 		return idVenteLivre;
 	}
 
-	public void setIdVenteLivre(Commande idVenteLivre) {
+	public void setIdVenteLivre(List<Commande> idVenteLivre) {
 		this.idVenteLivre = idVenteLivre;
 	}
 
