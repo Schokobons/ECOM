@@ -40,7 +40,7 @@ public class LivreRegistration {
     private Event<Livre> livreEventSrc;
 
     public void register(Livre livre) throws Exception {
-        log.info("Registering " + livre.getName());
+        log.info("Registering " + livre.getNom());
         em.persist(livre);
         livreEventSrc.fire(livre);
     }
