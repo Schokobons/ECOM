@@ -19,3 +19,7 @@
 -- insert into Member (id, name, email, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212') 
 insert into Client (nom,prenom, email, telephone) values ('John', 'Smith', 'john.smith@mailinator.com', '2125551212') ;
 insert into Client (nom,prenom, email, telephone) values ('Alex', 'Mo', 'alex@gmail.com', '04040404') ;
+insert into Livre (nom,nbPages) values ('Le chemin de la vie', 175) ;
+insert into Livre (nom,nbPages) values ('Le chemin de la mort', 220) ;
+insert into Livre (nom,nbPages) values ('Le retour de Gandhi', 1500) ;
+insert into Livre (nom,nbPages) values ('Un enfant qui savait lire', 53) ;

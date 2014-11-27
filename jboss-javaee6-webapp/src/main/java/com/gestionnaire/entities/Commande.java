@@ -58,6 +58,8 @@ public class Commande implements Serializable {
 	private boolean isEnchere;
 	
 	private float montantBase;
+	
+	private String image;
 
 	public Long getIdEnchere() {
 		return idEnchere;
@@ -145,6 +147,14 @@ public class Commande implements Serializable {
 
 	public void setMontantBase(float montantBase) {
 		this.montantBase = montantBase;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	

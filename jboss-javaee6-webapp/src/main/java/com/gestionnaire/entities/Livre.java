@@ -43,7 +43,7 @@ public class Livre implements Serializable {
     @NotNull
     @NotEmpty
     @Size(min = 1, max = 255)
-    private String name;
+    private String nom;
    
 
     @NotNull
@@ -79,12 +79,13 @@ public class Livre implements Serializable {
 		this.idLivre = idLivre;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getNom() {
+		return nom;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public String getNbPages() {
