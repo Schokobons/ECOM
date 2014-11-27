@@ -73,7 +73,7 @@
             styleClass="simpletablestyle">
             <h:column>
                 <f:facet name="header">Id</f:facet>
-                #{_client.id}
+                #{_client.idClient}
             </h:column>
             <h:column>
                 <f:facet name="header">Nom</f:facet>
@@ -90,7 +90,7 @@
             <h:column>
                 <f:facet name="header">REST URL</f:facet>
                 <a
-                    href="#{request.contextPath}/rest/clients/#{_client.id}">/rest/clients/#{_client.id}</a>
+                    href="#{request.contextPath}/rest/clients/#{_client.idClient}">/rest/clients/#{_client.idClient}</a>
             </h:column>
             <f:facet name="footer">
             REST URL for all clients: <a

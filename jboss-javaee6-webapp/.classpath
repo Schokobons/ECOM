@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="com/gestionnaire/registre/ClientRegistration.java|com/gestionnaire/registre/LivreRegistration.java|com/gestionnaire/rest/ClientResourceRESTService.java|com/gestionnaire/controller/ClientController.java|com/gestionnaire/controller/LivreController.java" kind="src" output="target/classes" path="src/main/java">
+	<classpathentry excluding="com/gestionnaire/rest/ClientResourceRESTService.java" kind="src" output="target/classes" path="src/main/java">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
