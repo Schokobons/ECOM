@@ -32,7 +32,7 @@ public class Chapitre implements Serializable {
 	
 	private String numeroChapitre;
 	
-	private String nbPages;
+	private int nbPages;
 
 	public Long getIdChapitre() {
 		return idChapitre;
@@ -66,13 +66,6 @@ public class Chapitre implements Serializable {
 		this.numeroChapitre = numeroChapitre;
 	}
 
-	public String getNbPages() {
-		return nbPages;
-	}
-
-	public void setNbPages(String nbPages) {
-		this.nbPages = nbPages;
-	}
 
 	
 	

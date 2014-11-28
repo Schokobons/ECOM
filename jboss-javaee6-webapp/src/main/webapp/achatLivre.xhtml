@@ -37,5 +37,9 @@
                 #{_livre.nom}
             </h:column>
         </h:dataTable>
+        
+        <h:inputText value="#{livre.id}" />
+        <h:commandButton value="Acheter" action="LivreAchatController.acheter" />
+        
     </ui:define>
 </ui:composition>

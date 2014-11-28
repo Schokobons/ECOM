@@ -49,7 +49,7 @@ public class Livre implements Serializable {
     @NotNull
     @NotEmpty
     @Pattern(regexp = "[0-9]*", message = "Doit contenir des chiffres")
-    private String  nbPages;
+    private int  nbPages;
 	
 	@OneToMany(mappedBy="livre")
 	private List<Chapitre> chapitres;
@@ -88,14 +88,14 @@ public class Livre implements Serializable {
 		this.nom = nom;
 	}
 
-	public String getNbPages() {
+
+	public int getNbPages() {
 		return nbPages;
 	}
 
-	public void setNbPages(String nbPages) {
+	public void setNbPages(int nbPages) {
 		this.nbPages = nbPages;
 	}
-
 
 	public List<Commande> getIdVenteLivre() {
 		return idVenteLivre;

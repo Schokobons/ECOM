@@ -51,7 +51,7 @@ public class Client implements Serializable {
     @Size(min = 10, max = 12)
     @Digits(fraction = 0, integer = 12)
     @Column(name = "telephone")
-    private String telephone;
+    private int telephone;
 
 
 	@OneToMany(mappedBy="client")
@@ -95,11 +95,11 @@ public class Client implements Serializable {
 		this.email = email;
 	}
 
-	public String getTelephone() {
+	public int getTelephone() {
 		return telephone;
 	}
 
-	public void setTelephone(String telephone) {
+	public void setTelephone(int telephone) {
 		this.telephone = telephone;
 	}
 

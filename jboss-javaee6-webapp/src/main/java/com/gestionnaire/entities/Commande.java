@@ -26,7 +26,7 @@ public class Commande implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long idEnchere;
+	private Long idCommande;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idVenteLivre")
@@ -61,12 +61,12 @@ public class Commande implements Serializable {
 	
 	private String image;
 
-	public Long getIdEnchere() {
-		return idEnchere;
+	public Long getIdCommande() {
+		return idCommande;
 	}
 
-	public void setIdEnchere(Long idEnchere) {
-		this.idEnchere = idEnchere;
+	public void setIdCommande(Long idCommande) {
+		this.idCommande = idCommande;
 	}
 
 	public Livre getVentelivre() {

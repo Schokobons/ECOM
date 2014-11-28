@@ -44,4 +44,9 @@ public class LivreRegistration {
         em.persist(livre);
         livreEventSrc.fire(livre);
     }
+
+	public void acheter(Livre livre) {
+		// TODO Auto-generated method stub
+		
+	}
 }
