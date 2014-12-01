@@ -38,7 +38,23 @@
             </h:column>
         </h:dataTable>
         
-        <h:inputText value="#{livre.id}" />
+         <h2>Commandes</h2>
+          <h:panelGroup rendered="#{empty commande}">
+            <em>No commandes.</em>
+        </h:panelGroup>
+        <h:dataTable var="_commande" value="#{commandes}"
+            styleClass="simpletablestyle">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{_commande.idCommande}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nom</f:facet>
+                #{_commande.ventelivre}
+            </h:column>
+        </h:dataTable>
+        
+        <h:inputText value="#{commande.idLivre}" />
         <h:commandButton value="Acheter" action="LivreAchatController.acheter" />
         
     </ui:define>

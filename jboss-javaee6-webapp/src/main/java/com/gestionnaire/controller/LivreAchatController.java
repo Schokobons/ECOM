@@ -24,6 +24,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.gestionnaire.entities.Commande;
 import com.gestionnaire.entities.Livre;
 import com.gestionnaire.registre.LivreRegistration;
 
@@ -44,18 +45,16 @@ public class LivreAchatController {
     @Produces
     @Named
     private Livre livre;
-
-    @PostConstruct
-    public void initLivre() {
-    	livre = new Livre();
-    }
+    
+    @Produces
+    @Named
+    private Commande commande;
 
     public void acheter() throws Exception {
         try {
-        	livreRegistration.acheter(livre);
+        	livreRegistration.acheter(commande);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
             facesContext.addMessage(null, m);
-            initLivre();
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Achat non fait");

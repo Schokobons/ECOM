@@ -22,6 +22,7 @@ import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import com.gestionnaire.entities.Commande;
 import com.gestionnaire.entities.Livre;
 
 import java.util.logging.Logger;
@@ -45,7 +46,7 @@ public class LivreRegistration {
         livreEventSrc.fire(livre);
     }
 
-	public void acheter(Livre livre) {
+	public void acheter(Commande commande) {
 		// TODO Auto-generated method stub
 		
 	}
