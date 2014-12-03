@@ -13,7 +13,6 @@
 -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
---
 
 -- You can use this file to load seed data into the database using SQL statements
 -- insert into Member (id, name, email, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212') 
@@ -23,3 +22,7 @@ insert into Livre (nom,nbPages) values ('Le chemin de la vie', 175) ;
 insert into Livre (nom,nbPages) values ('Le chemin de la mort', 220) ;
 insert into Livre (nom,nbPages) values ('Le retour de Gandhi', 1500) ;
 insert into Livre (nom,nbPages) values ('Un enfant qui savait lire', 53) ;
+insert into Commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre) values ('2010-12-02', 'jdhsfdl', 1 , 73,73,'2010-12-02' ,2,1);
+insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre) values ('2010-12-02', 'tutu', 0 , 34,34,'2010-12-02' ,2,2);
+insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre) values ('2010-12-02', 'titi', 0 , 33,33,'2010-12-02' ,1,3);
+insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre) values ('2010-12-02', 'toto', 1 , 383,383,'2010-12-02' ,1,4);
