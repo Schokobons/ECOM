@@ -39,23 +39,25 @@
         </h:dataTable>
         
          <h2>Commandes</h2>
-          <h:panelGroup rendered="#{empty commande}">
+          <h:panelGroup rendered="#{empty commandes}">
             <em>No commandes.</em>
         </h:panelGroup>
         <h:dataTable var="_commande" value="#{commandes}"
             styleClass="simpletablestyle">
             <h:column>
                 <f:facet name="header">Id</f:facet>
-                #{_commande.idCommande}
+                #{_commande[0].idCommande}
+            </h:column>
+             <h:column>
+                <f:facet name="header">Prix</f:facet>
+                #{_commande[0].montantBase}
             </h:column>
             <h:column>
                 <f:facet name="header">Nom</f:facet>
-                #{_commande.ventelivre}
+                #{_commande[1]}
             </h:column>
+        
         </h:dataTable>
-        
-        <h:inputText value="#{commande.idLivre}" />
-        <h:commandButton value="Acheter" action="LivreAchatController.acheter" />
-        
+      
     </ui:define>
 </ui:composition>

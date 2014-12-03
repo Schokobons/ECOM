@@ -23,6 +23,7 @@ import javax.enterprise.event.Reception;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Tuple;
 
 import com.gestionnaire.entities.Commande;
 
@@ -35,13 +36,13 @@ public class CommandeListProducer {
     @Inject
     private CommandeRepository commandeRepository;
 
-    private List<Commande> commandes;
+    private List<Object[]> commandes;
 
     // @Named provides access the return value via the EL variable name "members" in the UI (e.g.
     // Facelets or JSP view)
     @Produces
     @Named
-    public List<Commande> getCommandes() {
+    public List<Object[]> getCommandes() {
         return commandes;
     }
 

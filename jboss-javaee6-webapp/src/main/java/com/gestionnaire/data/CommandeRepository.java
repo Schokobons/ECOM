@@ -19,11 +19,19 @@ package com.gestionnaire.data;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.Tuple;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
+import javax.persistence.metamodel.SingularAttribute;
 
 import com.gestionnaire.entities.Commande;
+import com.gestionnaire.entities.Livre;
 
 import java.util.List;
 
@@ -38,14 +46,18 @@ public class CommandeRepository {
         return em.find(Commande.class, id);
     }
 
-    public List<Commande> findAllOrderedByName() {
+    public List<Object[]> findAllOrderedByName() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Commande> criteria = cb.createQuery(Commande.class);
+        
+        CriteriaQuery<Object[]> criteria = cb.createQuery(Object[].class);
         Root<Commande> commande = criteria.from(Commande.class);
-        // Swap criteria statements if you would like to try out type-safe criteria queries, a new
-        // feature in JPA 2.0
-        // criteria.select(member).orderBy(cb.asc(member.get(Member_.name)));
-        criteria.select(commande).orderBy(cb.asc(commande.get("ventelivre")));
-        return em.createQuery(criteria).getResultList();
+        
+
+        Join<Commande,Livre> li = commande.join("ventelivre",JoinType.LEFT);
+
+        criteria.multiselect(commande,li.get("nom")).orderBy(cb.asc(commande.get("ventelivre")));
+
+        TypedQuery<Object[]> tq = em.createQuery(criteria);
+        return tq.getResultList();
     }
 }
