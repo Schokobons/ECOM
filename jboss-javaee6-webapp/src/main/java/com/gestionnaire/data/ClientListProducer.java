@@ -53,4 +53,8 @@ public class ClientListProducer {
     public void retrieveAllMembersOrderedByName() {
         clients = clientRepository.findAllOrderedByName();
     }
+
+	public Client findClient(int idCli) {
+    	return clientRepository.findClient(idCli);
+	}
 }

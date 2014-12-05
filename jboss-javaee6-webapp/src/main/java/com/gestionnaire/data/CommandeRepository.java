@@ -25,6 +25,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
@@ -60,4 +61,15 @@ public class CommandeRepository {
         TypedQuery<Object[]> tq = em.createQuery(criteria);
         return tq.getResultList();
     }
+
+	public Commande findCommande(long idCommande) {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Commande> criteria = cb.createQuery(Commande.class);
+        Root<Commande> commande = criteria.from(Commande.class);
+        criteria.select(commande);
+        
+        criteria.where(cb.equal(commande.get("idCommande"), idCommande));
+		return (Commande) criteria.getSelection();
+	}
 }

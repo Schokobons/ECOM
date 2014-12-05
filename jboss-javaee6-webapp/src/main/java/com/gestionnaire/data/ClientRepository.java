@@ -24,6 +24,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import com.gestionnaire.entities.Client;
+import com.gestionnaire.entities.Commande;
 
 import java.util.List;
 
@@ -59,4 +60,14 @@ public class ClientRepository {
         criteria.select(client).orderBy(cb.asc(client.get("nom")));
         return em.createQuery(criteria).getResultList();
     }
+
+	public Client findClient(int idClient) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Client> criteria = cb.createQuery(Client.class);
+        Root<Client> client = criteria.from(Client.class);
+        criteria.select(client);
+        
+        criteria.where(cb.equal(client.get("idClient"), idClient));
+		return (Client) criteria.getSelection();
+	}
 }

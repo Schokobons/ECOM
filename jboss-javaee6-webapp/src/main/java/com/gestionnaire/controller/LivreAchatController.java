@@ -24,9 +24,12 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.gestionnaire.data.ClientListProducer;
+import com.gestionnaire.data.CommandeListProducer;
+import com.gestionnaire.entities.Client;
 import com.gestionnaire.entities.Commande;
 import com.gestionnaire.entities.Livre;
-import com.gestionnaire.registre.LivreRegistration;
+import com.gestionnaire.registre.CommandeRegistration;
 
 
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
@@ -40,7 +43,10 @@ public class LivreAchatController {
     private FacesContext facesContext;
 
     @Inject
-    private LivreRegistration livreRegistration;
+    private CommandeRegistration commandeRegistration;
+    
+    private CommandeListProducer commandeList;
+    private ClientListProducer clientList;
 
     @Produces
     @Named
@@ -49,10 +55,29 @@ public class LivreAchatController {
     @Produces
     @Named
     private Commande commande;
+    
+    private int idCom;
+    private int idCli = 2;
+    
+    private Client clientAcheteur;
 
     public void acheter() throws Exception {
         try {
-        	livreRegistration.acheter(commande);
+        	commande = commandeList.findCommande(idCom);
+        	if(commande == null){
+                FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "commande null");
+                facesContext.addMessage(null, m);
+                System.out.println("pas bon");
+        	}
+        	clientAcheteur = clientList.findClient(idCli);
+        	if(clientAcheteur == null){
+                FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "clientAcheteur null");
+                facesContext.addMessage(null, m);
+                System.out.println("pas bon");
+        	}
+        	commande.setClientAcheteur(clientAcheteur);
+        	
+        	commandeRegistration.acheter(commande);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
             facesContext.addMessage(null, m);
         } catch (Exception e) {

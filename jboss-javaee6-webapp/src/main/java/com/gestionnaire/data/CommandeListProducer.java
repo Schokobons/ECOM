@@ -54,4 +54,8 @@ public class CommandeListProducer {
     public void retrieveAllCommandesOrderedByName() {
     	commandes = commandeRepository.findAllOrderedByName();
     }
+    
+    public Commande findCommande(long idCommande){
+    	return commandeRepository.findCommande(idCommande);
+    }
 }
