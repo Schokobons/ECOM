@@ -27,6 +27,7 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Selection;
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
 import javax.persistence.metamodel.SingularAttribute;
@@ -70,6 +71,6 @@ public class CommandeRepository {
         criteria.select(commande);
         
         criteria.where(cb.equal(commande.get("idCommande"), idCommande));
-		return (Commande) criteria.getSelection();
+		return em.createQuery(criteria).getResultList().get(0);
 	}
 }

@@ -42,7 +42,7 @@ public class CommandeRegistration {
 
 	public void acheter(Commande commande) throws Exception{
 		log.info("Achat" + commande.getIdCommande());
-        em.persist(commande);
+        em.refresh(commande);
         commandeEventSrc.fire(commande);
 		
 	}

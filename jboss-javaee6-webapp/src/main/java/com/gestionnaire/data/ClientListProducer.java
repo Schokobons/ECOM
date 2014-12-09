@@ -36,6 +36,8 @@ public class ClientListProducer {
     private ClientRepository clientRepository;
 
     private List<Client> clients;
+    
+    private Client clientTrouve;
 
     // @Named provides access the return value via the EL variable name "members" in the UI (e.g.
     // Facelets or JSP view)
@@ -54,7 +56,8 @@ public class ClientListProducer {
         clients = clientRepository.findAllOrderedByName();
     }
 
-	public Client findClient(int idCli) {
-    	return clientRepository.findClient(idCli);
+	public Client findClient(long idCli) {
+		clientTrouve = clientRepository.findById(idCli);
+    	return clientTrouve;
 	}
 }

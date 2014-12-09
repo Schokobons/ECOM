@@ -23,6 +23,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.criteria.Selection;
 
 import com.gestionnaire.data.ClientListProducer;
 import com.gestionnaire.data.CommandeListProducer;
@@ -56,7 +57,7 @@ public class LivreAchatController {
     @Named
     private Commande commande;
     
-    private int idCom;
+    private long idCom;
     private int idCli = 2;
     
     private Client clientAcheteur;
@@ -75,9 +76,9 @@ public class LivreAchatController {
                 facesContext.addMessage(null, m);
                 System.out.println("pas bon");
         	}
-        	commande.setClientAcheteur(clientAcheteur);
+        	//commande.setClientAcheteur(clientAcheteur);
         	
-        	commandeRegistration.acheter(commande);
+        	//commandeRegistration.acheter(commande);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
             facesContext.addMessage(null, m);
         } catch (Exception e) {
