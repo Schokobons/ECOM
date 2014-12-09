@@ -41,8 +41,6 @@ public class Client implements Serializable {
     @Size(min = 1, max = 25)
     @Pattern(regexp = "[^0-9]*", message = "Must not contain numbers")
     private String prenom;
-    
-    private String password;
 
 	@NotNull
     @NotEmpty
@@ -67,14 +65,6 @@ public class Client implements Serializable {
 
 	public Long getIdClient() {
 		return idClient;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public void setIdClient(Long idClient) {

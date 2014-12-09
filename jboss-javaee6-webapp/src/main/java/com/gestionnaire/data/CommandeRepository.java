@@ -70,6 +70,6 @@ public class CommandeRepository {
         criteria.select(commande);
         
         criteria.where(cb.equal(commande.get("idCommande"), idCommande));
-		return em.createQuery(criteria).getResultList().get(0);
+		return (Commande) criteria.getSelection();
 	}
 }
