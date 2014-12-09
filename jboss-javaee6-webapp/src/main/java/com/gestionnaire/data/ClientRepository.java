@@ -68,6 +68,6 @@ public class ClientRepository {
         criteria.select(client);
         
         criteria.where(cb.equal(client.get("idClient"), idClient));
-		return (Client) criteria.getSelection();
+		return  em.createQuery(criteria).getResultList().get(0);
 	}
 }
