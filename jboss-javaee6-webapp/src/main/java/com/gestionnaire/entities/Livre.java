@@ -126,6 +126,14 @@ public class Livre implements Serializable {
 	public void setCategories(List<Categories> categories) {
 		this.categories = categories;
 	}
+
+	public void addAuteurs(Auteur newAuteur) {
+		auteurs.add(newAuteur);		
+	}
+
+	public void addCategories(Categories newCategorie) {
+		categories.add(newCategorie);		
+	}
 	
 	
     

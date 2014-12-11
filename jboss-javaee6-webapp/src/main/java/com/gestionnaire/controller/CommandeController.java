@@ -84,8 +84,6 @@ public class CommandeController {
             newLivreVente = new Livre();
             newAuteur = new Auteur();
             newCategorie = new Categories();
-        	
-
     }
 
     
@@ -99,15 +97,23 @@ public class CommandeController {
             
         	newCommande.setNomtantActuel(newCommande.getMontantBase());
             newCommande.setEnchere(false);
-            commandeRegistration.register(newCommande);
-            livreRegistration.register(newLivreVente);
-        	auteurRegistration.register(newAuteur);
+            
+            auteurRegistration.register(newAuteur);
+           // newLivreVente.addAuteurs(newAuteur);
         	categoriesRegistration.register(newCategorie);
+        	//newLivreVente.addCategories(newCategorie);
+        	
+            livreRegistration.register(newLivreVente);
+            newCommande.setVentelivre(newLivreVente);  	
+        	
+        	commandeRegistration.register(newCommande);
         	
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
             facesContext.addMessage(null, m);
-           initNewCommande();
-           newCommande.setVentelivre(newLivreVente);
+            
+            
+            initNewCommande();
+            
           // commandeRegistration.register(newCommande);
         
         } catch (Exception e) {
