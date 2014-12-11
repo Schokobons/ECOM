@@ -50,8 +50,15 @@ public class CommandeRegistration {
        // em.remove(commande);
         em.flush();
        // em.merge(clientAcheteur);
+        em.persist(commande);
         commandeEventSrc.fire(commande);
         
         em.getTransaction().commit();
 	}
+	
+	public void register(Commande commande) throws Exception {
+        log.info("Mise en vente " + commande.getIdCommande());
+        em.persist(commande);
+        commandeEventSrc.fire(commande);
+    }
 }

@@ -46,9 +46,7 @@ public class Livre implements Serializable {
     private String nom;
    
 
-    @NotNull
-    @NotEmpty
-    @Pattern(regexp = "[0-9]*", message = "Doit contenir des chiffres")
+  
     private int  nbPages;
 	
 	@OneToMany(mappedBy="livre")
