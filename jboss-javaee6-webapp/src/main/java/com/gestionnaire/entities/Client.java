@@ -46,6 +46,10 @@ public class Client implements Serializable {
     @NotEmpty
     @Email
     private String email;
+	
+	@NotNull
+    @NotEmpty
+    private String password;
 
     @NotNull
     @Size(min = 10, max = 12)
@@ -69,6 +73,14 @@ public class Client implements Serializable {
 
 	public void setIdClient(Long idClient) {
 		this.idClient = idClient;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getNom() {
