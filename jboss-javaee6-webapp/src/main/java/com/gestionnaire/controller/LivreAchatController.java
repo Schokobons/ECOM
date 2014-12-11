@@ -18,7 +18,6 @@ package com.gestionnaire.controller;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
@@ -57,9 +56,10 @@ public class LivreAchatController {
     private ClientRepository clientRepository;
 
 
+    private long idCom;
+        	
     public void acheter() throws Exception {
         try {
-        	long idCom = 2;
         	long idCli = 1;
         	Commande commande = commandeRepository.findById(idCom);
         	Client clientAcheteur = clientRepository.findById(idCli);
@@ -94,5 +94,13 @@ public class LivreAchatController {
         // This is the root cause message
         return errorMessage;
     }
+
+	public long getIdCom() {
+		return idCom;
+	}
+
+	public void setIdCom(long idCom) {
+		this.idCom = idCom;
+	}
 
 }

@@ -41,20 +41,6 @@ public class CommandeRegistration {
 
     @Inject
     private Event<Commande> commandeEventSrc;
-
-	public void acheter(Commande commande, Client clientAcheteur) throws Exception{
-		em.getTransaction().begin();
-		
-		log.info("Achat" + commande.getIdCommande());
-        em.merge(commande);
-       // em.remove(commande);
-        em.flush();
-       // em.merge(clientAcheteur);
-        //em.persist(commande);
-        commandeEventSrc.fire(commande);
-        
-        em.getTransaction().commit();
-	}
 	
 	public void register(Commande commande) throws Exception {
         log.info("Mise en vente " + commande.getIdCommande());
