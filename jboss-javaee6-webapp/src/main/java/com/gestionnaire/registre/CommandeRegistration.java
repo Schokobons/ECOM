@@ -61,4 +61,11 @@ public class CommandeRegistration {
         em.persist(commande);
         commandeEventSrc.fire(commande);
     }
+
+	public void update(Commande commande) {
+	  log.info("update acheteur  " + commande.getIdCommande());
+      em.merge(commande);
+      commandeEventSrc.fire(commande);
+	
+	}
 }

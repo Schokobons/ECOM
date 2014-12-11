@@ -28,7 +28,9 @@ import javax.inject.Named;
 import javax.persistence.criteria.Selection;
 
 import com.gestionnaire.data.ClientListProducer;
+import com.gestionnaire.data.ClientRepository;
 import com.gestionnaire.data.CommandeListProducer;
+import com.gestionnaire.data.CommandeRepository;
 import com.gestionnaire.entities.Client;
 import com.gestionnaire.entities.Commande;
 import com.gestionnaire.entities.Livre;
@@ -48,36 +50,29 @@ public class LivreAchatController {
     @Inject
     private CommandeRegistration commandeRegistration;
     
-    private CommandeListProducer commandeList;
-    private ClientListProducer clientList;
+    @Inject
+    private CommandeRepository commandeRepository;
+    
+    @Inject
+    private ClientRepository clientRepository;
 
-    @Produces
-    @Named
-    private Livre livre;
-    
-    @Produces
-    @Named
-    private Commande commande;
-    
-    private long idCom;
-    private int idCli = 2;
-    
-    private Client clientAcheteur;
 
     public void acheter() throws Exception {
         try {
-        	commande = commandeList.findCommande(idCom);
-        	clientAcheteur = clientList.findClient(idCli);
+        	long idCom = 2;
+        	long idCli = 1;
+        	Commande commande = commandeRepository.findById(idCom);
+        	Client clientAcheteur = clientRepository.findById(idCli);
 
         	//clientAcheteur.setAchatsFait((List<Commande>) commande);
         	commande.setClientAcheteur(clientAcheteur);
         	
-        	commandeRegistration.acheter(commande,clientAcheteur);
+        	commandeRegistration.update(commande);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
             facesContext.addMessage(null, m);
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "Achat non fait");
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "MAJ fail");
             facesContext.addMessage(null, m);
         }
     }
