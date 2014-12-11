@@ -50,7 +50,7 @@ public class CommandeRegistration {
        // em.remove(commande);
         em.flush();
        // em.merge(clientAcheteur);
-        em.persist(commande);
+        //em.persist(commande);
         commandeEventSrc.fire(commande);
         
         em.getTransaction().commit();
