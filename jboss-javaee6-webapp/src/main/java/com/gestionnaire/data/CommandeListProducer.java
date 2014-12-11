@@ -26,6 +26,7 @@ import javax.inject.Named;
 import javax.persistence.Tuple;
 import javax.persistence.criteria.Selection;
 
+import com.bean.LoginBean;
 import com.gestionnaire.entities.Commande;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class CommandeListProducer {
     private CommandeRepository commandeRepository;
 
     private List<Object[]> commandes;
+    
     
     private Commande commandeTrouve;
 
