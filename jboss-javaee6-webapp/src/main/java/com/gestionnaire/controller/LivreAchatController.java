@@ -64,7 +64,6 @@ public class LivreAchatController {
         	Commande commande = commandeRepository.findById(idCom);
         	Client clientAcheteur = clientRepository.findById(idCli);
 
-        	//clientAcheteur.setAchatsFait((List<Commande>) commande);
         	commande.setClientAcheteur(clientAcheteur);
         	
         	commandeRegistration.update(commande);
