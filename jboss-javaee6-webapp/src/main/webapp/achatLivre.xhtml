@@ -21,7 +21,7 @@
     xmlns:h="http://java.sun.com/jsf/html"
     template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
-          
+   <!--       
         <h2>Livres</h2>
           <h:panelGroup rendered="#{empty livre}">
             <em>No livres.</em>
@@ -37,7 +37,7 @@
                 #{_livre.nom}
             </h:column>
         </h:dataTable>
-        
+  -->      
          <h2>Commandes</h2>
           <h:panelGroup rendered="#{empty commandes}">
             <em>No commandes.</em>
@@ -52,10 +52,10 @@
                 <f:facet name="header">Prix</f:facet>
                 #{_commande[0].montantBase}
             </h:column>
-             <h:column>
+             <!--  <h:column>
                 <f:facet name="header">Acheteur</f:facet>
                 #{_commande[0].clientAcheteur}
-            </h:column>
+            </h:column>-->
             <h:column>
                 <f:facet name="header">Nom</f:facet>
                 #{_commande[1]}
@@ -66,44 +66,6 @@
            <h:inputText value="#{idCom}" />
            <h:commandButton value="Acheter" action="LivreAchatController.acheter" />
         </h:form>
-
-		<h2>CommandesTrouver</h2>
-        <h:dataTable var="_commandeT" value="#{commandeTrouve}"
-            styleClass="simpletablestyle">
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                #{_commandeT.idCommande}
-            </h:column>
-        </h:dataTable>
-        <h2>ClientTrouver</h2>
-        <h:dataTable var="_clientT" value="#{clientTrouve}"
-            styleClass="simpletablestyle">
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                #{_clientT.idClient}
-            </h:column>
-        </h:dataTable>
-
- 		<h2>CommandesApresAchat</h2>
-        <h:dataTable var="_commande" value="#{commandes}"
-            styleClass="simpletablestyle">
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                #{_commande[0].idCommande}
-            </h:column>
-             <h:column>
-                <f:facet name="header">Prix</f:facet>
-                #{_commande[0].montantBase}
-            </h:column>
-             <h:column>
-                <f:facet name="header">Acheteur</f:facet>
-                #{_commande[0].clientAcheteur}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nom</f:facet>
-                #{_commande[1]}
-            </h:column>
-        </h:dataTable>
         
     </ui:define>
 </ui:composition>

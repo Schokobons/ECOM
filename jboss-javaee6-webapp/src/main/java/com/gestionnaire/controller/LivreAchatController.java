@@ -16,6 +16,8 @@
  */
 package com.gestionnaire.controller;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
@@ -65,20 +67,12 @@ public class LivreAchatController {
     public void acheter() throws Exception {
         try {
         	commande = commandeList.findCommande(idCom);
-        	if(commande == null){
-                FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "commande null");
-                facesContext.addMessage(null, m);
-                System.out.println("pas bon");
-        	}
         	clientAcheteur = clientList.findClient(idCli);
-        	if(clientAcheteur == null){
-                FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "clientAcheteur null");
-                facesContext.addMessage(null, m);
-                System.out.println("pas bon");
-        	}
-        	//commande.setClientAcheteur(clientAcheteur);
+
+        	//clientAcheteur.setAchatsFait((List<Commande>) commande);
+        	commande.setClientAcheteur(clientAcheteur);
         	
-        	//commandeRegistration.acheter(commande);
+        	commandeRegistration.acheter(commande,clientAcheteur);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
             facesContext.addMessage(null, m);
         } catch (Exception e) {

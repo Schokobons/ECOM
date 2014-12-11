@@ -59,7 +59,7 @@ public class CommandeListProducer {
     }
     
     public Commande findCommande(long idCommande){
-    	commandeTrouve = commandeRepository.findCommande(idCommande);
+    	commandeTrouve = commandeRepository.findById(idCommande);
     	return commandeTrouve;
     }
 }

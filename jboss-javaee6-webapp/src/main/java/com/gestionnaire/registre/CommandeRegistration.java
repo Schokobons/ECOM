@@ -17,11 +17,13 @@
 package com.gestionnaire.registre;
 
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+import com.gestionnaire.entities.Client;
 import com.gestionnaire.entities.Commande;
 import com.gestionnaire.entities.Livre;
 
@@ -40,10 +42,16 @@ public class CommandeRegistration {
     @Inject
     private Event<Commande> commandeEventSrc;
 
-	public void acheter(Commande commande) throws Exception{
-		log.info("Achat" + commande.getIdCommande());
-        em.refresh(commande);
-        commandeEventSrc.fire(commande);
+	public void acheter(Commande commande, Client clientAcheteur) throws Exception{
+		em.getTransaction().begin();
 		
+		log.info("Achat" + commande.getIdCommande());
+        em.merge(commande);
+       // em.remove(commande);
+        em.flush();
+       // em.merge(clientAcheteur);
+        commandeEventSrc.fire(commande);
+        
+        em.getTransaction().commit();
 	}
 }
