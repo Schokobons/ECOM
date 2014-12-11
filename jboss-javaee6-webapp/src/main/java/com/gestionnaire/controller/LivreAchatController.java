@@ -75,6 +75,25 @@ public class LivreAchatController {
             facesContext.addMessage(null, m);
         }
     }
+    
+    public void acheter(long id) throws Exception {
+        try {
+        	idCom =id;
+        	long idCli = 1;
+        	Commande commande = commandeRepository.findById(idCom);
+        	Client clientAcheteur = clientRepository.findById(idCli);
+
+        	commande.setClientAcheteur(clientAcheteur);
+        	
+        	commandeRegistration.update(commande);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
+            facesContext.addMessage(null, m);
+        } catch (Exception e) {
+            String errorMessage = getRootErrorMessage(e);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "MAJ fail");
+            facesContext.addMessage(null, m);
+        }
+    }
 
     private String getRootErrorMessage(Exception e) {
         // Default to general error message that registration failed.

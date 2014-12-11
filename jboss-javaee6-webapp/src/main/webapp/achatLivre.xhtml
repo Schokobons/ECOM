@@ -60,6 +60,15 @@
                 <f:facet name="header">Nom</f:facet>
                 #{_commande[1]}
             </h:column>
+            <h:column>
+                <f:facet name="header">Acheter</f:facet>
+              <h:form>
+               		<h:commandButton value="acheter" action="#{livreAchatController.acheter}" >
+               		
+					<f:setPropertyActionListener value="#{_commande[0].idCommande}" target="#{livreAchatController.idCom}" />
+					</h:commandButton >
+             </h:form>
+            </h:column>
         </h:dataTable>
         
         <h:form>
