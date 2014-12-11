@@ -42,8 +42,14 @@ public class CommandeRegistration {
 
 	public void acheter(Commande commande) throws Exception{
 		log.info("Achat" + commande.getIdCommande());
-        em.refresh(commande);
+        em.persist(commande);
         commandeEventSrc.fire(commande);
 		
 	}
+	
+	public void register(Commande commande) throws Exception {
+        log.info("Mise en vente " + commande.getIdCommande());
+        em.persist(commande);
+        commandeEventSrc.fire(commande);
+    }
 }
