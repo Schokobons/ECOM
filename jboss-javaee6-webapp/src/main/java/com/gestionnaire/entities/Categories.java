@@ -50,6 +50,10 @@ public class Categories implements Serializable {
 		this.livres = livres;
 	}
 	
+	public void addLivres(Livre livres) {
+		this.livres.add(livres);
+	}
+	
 
 	
 

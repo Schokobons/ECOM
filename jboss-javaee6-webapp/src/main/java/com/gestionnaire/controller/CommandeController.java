@@ -16,6 +16,7 @@
  */
 package com.gestionnaire.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -98,12 +99,24 @@ public class CommandeController {
         	newCommande.setNomtantActuel(newCommande.getMontantBase());
             newCommande.setEnchere(false);
             
-            auteurRegistration.register(newAuteur);
-           // newLivreVente.addAuteurs(newAuteur);
-        	categoriesRegistration.register(newCategorie);
-        	//newLivreVente.addCategories(newCategorie);
+            // ajout de l auteur / livre
+            newLivreVente.setAuteurs(new ArrayList<Auteur>());
+            newLivreVente.getAuteurs().add(newAuteur);
+            newAuteur.setLivres(new ArrayList<Livre>());
+            newAuteur.getLivres().add(newLivreVente);
+            
+            // ajout de la categorie / livre
+            newLivreVente.setCategories(new ArrayList<Categories>());
+            newLivreVente.getCategories().add(newCategorie);
+        	newCategorie.setLivres(new ArrayList<Livre>());
+        	newCategorie.getLivres().add(newLivreVente);
         	
+        	
+        	// enregistrement dans la BDD des livre / categories / auteurs
+            auteurRegistration.register(newAuteur);
+            categoriesRegistration.register(newCategorie);
             livreRegistration.register(newLivreVente);
+            
             newCommande.setVentelivre(newLivreVente);  	
         	
         	commandeRegistration.register(newCommande);

@@ -128,7 +128,8 @@ public class Livre implements Serializable {
 	}
 
 	public void addAuteurs(Auteur newAuteur) {
-		auteurs.add(newAuteur);		
+		auteurs.add(newAuteur);	
+		
 	}
 
 	public void addCategories(Categories newCategorie) {

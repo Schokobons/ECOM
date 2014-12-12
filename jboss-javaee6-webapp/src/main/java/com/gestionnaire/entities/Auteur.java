@@ -45,6 +45,23 @@ public class Auteur implements Serializable {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+	public Long getIdAuteur() {
+		return idAuteur;
+	}
+	public void setIdAuteur(Long idAuteur) {
+		this.idAuteur = idAuteur;
+	}
+	public List<Livre> getLivres() {
+		return livres;
+	}
+	public void setLivres(List<Livre> livres) {
+		this.livres = livres;
+	}
+	
+	public void addLivres(Livre livres) {
+		this.livres.add(livres);
+	}
+	
 
 
 }
