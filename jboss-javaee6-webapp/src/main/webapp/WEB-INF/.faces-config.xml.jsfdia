@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:#welcome.xhtml" PATH="/welcome.xhtml"
-  SHAPE="456,192,50,25" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
-  SHAPE="176,120,50,41" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
-   PATH="/login.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="::#welcome.xhtml" NAME="output"
-    PATH="/welcome.xhtml" TARGET="rules:#welcome.xhtml" TITLE="[any]" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
+  SHAPE="176,120,50,41" model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

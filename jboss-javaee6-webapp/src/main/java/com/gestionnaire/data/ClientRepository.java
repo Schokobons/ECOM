@@ -19,6 +19,7 @@ package com.gestionnaire.data;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -61,13 +62,19 @@ public class ClientRepository {
         return em.createQuery(criteria).getResultList();
     }
 
-	public Client findClient(int idClient) {
+	public Client CheckClient(String email,String password) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Client> criteria = cb.createQuery(Client.class);
         Root<Client> client = criteria.from(Client.class);
         criteria.select(client);
         
-        criteria.where(cb.equal(client.get("idClient"), idClient));
-		return (Client) criteria.getSelection();
+        criteria.where(cb.equal(client.get("email"), email),cb.equal(client.get("password"), password));
+        try {
+        	Client c1 = em.createQuery(criteria).getSingleResult();
+        	return c1;
+        }catch( NoResultException e) {
+        	return null;
+        }
+		
 	}
 }
