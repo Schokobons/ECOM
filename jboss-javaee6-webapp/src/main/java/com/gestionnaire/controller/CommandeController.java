@@ -90,12 +90,7 @@ public class CommandeController {
     
     public void register() throws Exception {
         try {
-        	
-           // newLivreVente.getAuteurs().add(newAuteur);
-           // newLivreVente.setAuteurs(newLivreVente.getAuteurs());
-           // newLivreVente.getCategories().add(newCategorie);
-           //  newLivreVente.setCategories(newLivreVente.getCategories());
-            
+        
         	newCommande.setNomtantActuel(newCommande.getMontantBase());
             newCommande.setEnchere(false);
             
@@ -139,23 +134,36 @@ public class CommandeController {
     public void registerEnchere() throws Exception {
         try {
         	
-           // newLivreVente.getAuteurs().add(newAuteur);
-           // newLivreVente.setAuteurs(newLivreVente.getAuteurs());
-           // newLivreVente.getCategories().add(newCategorie);
-           //  newLivreVente.setCategories(newLivreVente.getCategories());
-            
         	newCommande.setNomtantActuel(newCommande.getMontantBase());
             newCommande.setEnchere(true);
-            commandeRegistration.register(newCommande);
+            
+            // ajout de l auteur / livre
+            newLivreVente.setAuteurs(new ArrayList<Auteur>());
+            newLivreVente.getAuteurs().add(newAuteur);
+            newAuteur.setLivres(new ArrayList<Livre>());
+            newAuteur.getLivres().add(newLivreVente);
+            
+            // ajout de la categorie / livre
+            newLivreVente.setCategories(new ArrayList<Categories>());
+            newLivreVente.getCategories().add(newCategorie);
+        	newCategorie.setLivres(new ArrayList<Livre>());
+        	newCategorie.getLivres().add(newLivreVente);
+        	
+        	
+        	// enregistrement dans la BDD des livre / categories / auteurs
+            auteurRegistration.register(newAuteur);
+            categoriesRegistration.register(newCategorie);
             livreRegistration.register(newLivreVente);
-        	auteurRegistration.register(newAuteur);
-        	categoriesRegistration.register(newCategorie);
+            
+            newCommande.setVentelivre(newLivreVente);  	
+        	
+        	commandeRegistration.register(newCommande);
         	
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
             facesContext.addMessage(null, m);
-           initNewCommande();
-           newCommande.setVentelivre(newLivreVente);
-          // commandeRegistration.register(newCommande);
+            
+            
+            initNewCommande();
         
         } catch (Exception e) {
             String errorMessage = getRootErrorMessage(e);
