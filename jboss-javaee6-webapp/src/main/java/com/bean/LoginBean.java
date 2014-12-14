@@ -19,7 +19,7 @@ import com.gestionnaire.entities.Client;
  */
 
 @SuppressWarnings("serial")
-@ManagedBean(name = "loginBean")
+@ManagedBean(name = "loginBean", eager = true)
 @SessionScoped
 public class LoginBean implements Serializable
 {

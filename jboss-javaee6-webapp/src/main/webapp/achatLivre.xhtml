@@ -65,6 +65,7 @@
               <h:form>
                		<h:commandButton value="acheter" action="#{livreAchatController.acheter}" >
                		
+					<f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{livreAchatController.clientAcheteur}" />
 					<f:setPropertyActionListener value="#{_commande[0].idCommande}" target="#{livreAchatController.idCom}" />
 					</h:commandButton >
              </h:form>
@@ -75,6 +76,7 @@
            <h:inputText value="#{livreAchatController.idCom}" />
            <h:commandButton value="Acheter" action="#{livreAchatController.acheter}" />
         </h:form>
-        
+        <h:outputText value="Welcome #{loginBean.clientConnect.prenom}"></h:outputText>
+	        	<h:outputText value="#{loginBean.clientConnect.nom}"></h:outputText>
     </ui:define>
 </ui:composition>

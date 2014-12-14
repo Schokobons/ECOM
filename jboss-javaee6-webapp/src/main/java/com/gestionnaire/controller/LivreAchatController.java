@@ -18,6 +18,7 @@ package com.gestionnaire.controller;
 
 import java.util.List;
 
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
@@ -26,6 +27,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.criteria.Selection;
 
+import com.bean.LoginBean;
 import com.gestionnaire.data.ClientListProducer;
 import com.gestionnaire.data.ClientRepository;
 import com.gestionnaire.data.CommandeListProducer;
@@ -54,7 +56,8 @@ public class LivreAchatController {
     
     @Inject
     private ClientRepository clientRepository;
-
+    
+    private Client clientAcheteur;
 
     private long idCom;
         	
@@ -62,10 +65,15 @@ public class LivreAchatController {
         try {
         	long idCli = 1;
         	Commande commande = commandeRepository.findById(idCom);
-        	Client clientAcheteur = clientRepository.findById(idCli);
-
-        	commande.setClientAcheteur(clientAcheteur);
+        	//Client clientAcheteur = clientRepository.findById(idCli);
         	
+
+        	//commande.setClientAcheteur(clientAcheteur);
+        	//clientAcheteur = loginBean.getClientConnect();
+        	if (clientAcheteur != null)
+        		commande.setClientAcheteur(clientAcheteur);
+        	else 
+        		commande.setClientAcheteur(clientRepository.findById(idCli));
         	commandeRegistration.update(commande);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
             facesContext.addMessage(null, m);
@@ -122,4 +130,13 @@ public class LivreAchatController {
 		this.idCom = idCom;
 	}
 
+	public Client getClientAcheteur() {
+		return clientAcheteur;
+	}
+
+	public void setClientAcheteur(Client clientAcheteur) {
+		this.clientAcheteur = clientAcheteur;
+	}
+
+	
 }
