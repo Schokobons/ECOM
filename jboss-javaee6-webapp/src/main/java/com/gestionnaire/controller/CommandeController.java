@@ -66,6 +66,8 @@ public class CommandeController {
     @Inject
     private AuteurRegistration auteurRegistration;
 
+    private Client clientAcheteur;
+    
     @Produces
     @Named
     private Auteur newAuteur;
@@ -112,7 +114,8 @@ public class CommandeController {
             categoriesRegistration.register(newCategorie);
             livreRegistration.register(newLivreVente);
             
-            newCommande.setVentelivre(newLivreVente);  	
+            newCommande.setVentelivre(newLivreVente); 
+            newCommande.setClientAcheteur(clientAcheteur);
         	
         	commandeRegistration.register(newCommande);
         	
@@ -133,6 +136,7 @@ public class CommandeController {
     
     public void registerEnchere() throws Exception {
         try {
+        
         	
         	newCommande.setNomtantActuel(newCommande.getMontantBase());
             newCommande.setEnchere(true);
@@ -156,7 +160,7 @@ public class CommandeController {
             livreRegistration.register(newLivreVente);
             
             newCommande.setVentelivre(newLivreVente);  	
-        	
+        	newCommande.setClientAcheteur(clientAcheteur);
         	commandeRegistration.register(newCommande);
         	
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");

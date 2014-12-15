@@ -21,15 +21,8 @@
     xmlns:h="http://java.sun.com/jsf/html"
     template="/WEB-INF/templates/default.xhtml">
     <ui:define name="content">
-        <h1>Welcome to JBoss!</h1>
-
-        <div>
-            <p>You have successfully deployed a Java EE 6 Enterprise
-                Application.</p>
-            <h3>Your application can run on:</h3>
-            <img src="resources/gfx/dualbrand_as7eap.png" />
-        </div>
-
+      
+      
         <h:form id="reg">
             <h2>Vendre un livre en vente directe</h2>
             
@@ -124,7 +117,10 @@
                 <h:panelGrid columns="2">
                     <h:commandButton id="register"
                         action="#{commandeController.registerEnchere}"
-                        value="Valider" styleClass="register" />
+                        value="Valider" styleClass="register" >
+                        <f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{CommandeController.clientAcheteur}" />
+                    </h:commandButton >
+                        
                     <h:messages styleClass="messages"
                         errorClass="invalid" infoClass="valid"
                         warnClass="warning" globalOnly="true" />
