@@ -71,6 +71,14 @@ public class Client implements Serializable {
 	@OneToOne(mappedBy="clientConteneur")
 	private Panier panier;
 
+	public Panier getPanier() {
+		return panier;
+	}
+
+	public void setPanier(Panier panier) {
+		this.panier = panier;
+	}
+
 	public Long getIdClient() {
 		return idClient;
 	}

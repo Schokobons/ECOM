@@ -16,6 +16,7 @@
  */
 package com.gestionnaire.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.inject.Model;
@@ -31,12 +32,14 @@ import com.gestionnaire.data.ClientRepository;
 import com.gestionnaire.data.CommandeListProducer;
 import com.gestionnaire.data.CommandeRepository;
 import com.gestionnaire.data.PanierRepository;
+import com.gestionnaire.entities.Auteur;
 import com.gestionnaire.entities.Client;
 import com.gestionnaire.entities.Commande;
 import com.gestionnaire.entities.Livre;
 import com.gestionnaire.entities.Panier;
 import com.gestionnaire.registre.ClientRegistration;
 import com.gestionnaire.registre.CommandeRegistration;
+import com.gestionnaire.registre.PanierRegistration;
 
 
 // The @Model stereotype is a convenience mechanism to make this a request-scoped bean that has an
@@ -54,31 +57,99 @@ public class PanierController {
     
     @Inject
     private CommandeRegistration commandeRegistration;
+
+    @Inject
+    private PanierRegistration panierRegistration;
+    
+    @Inject
+    private ClientRegistration clientRegistration;
     
     @Inject
     private CommandeRepository commandeRepository;
 
-	private boolean connecter= true;
+    @Inject
+    private ClientRepository clientRepository;
 	
 	private long idCli = 1;
-	
-	private long idPanier = 1;
-	
+		
     private long idCom;
+    
+    private Client clientAcheteur;
+    
+    public long getIdCli() {
+		return idCli;
+	}
+
+	public void setIdCli(long idCli) {
+		this.idCli = idCli;
+	}
+
+	public long getIdCom() {
+		return idCom;
+	}
+
+	public void setIdCom(long idCom) {
+		this.idCom = idCom;
+	}
+
+	public Client getClientAcheteur() {
+		return clientAcheteur;
+	}
+
+	public void setClientAcheteur(Client clientAcheteur) {
+		this.clientAcheteur = clientAcheteur;
+	}
+
+	public Panier getPaniertmp() {
+		return paniertmp;
+	}
+
+	public void setPaniertmp(Panier paniertmp) {
+		this.paniertmp = paniertmp;
+	}
+
+	private Panier paniertmp = null;
 	
 	public void ajouterPanier() throws Exception {
         try {
         	
-        	Panier panier = panierRepository.findById(idPanier);
-
         	Commande commande = commandeRepository.findById(idCom);
         	
-        	List<Commande> listCommande = panier.getListCommande();
-        	listCommande.add(commande);
+        	if (clientAcheteur != null){
+        		commande.setClientAcheteur(clientAcheteur);
+        		
+        		paniertmp = clientAcheteur.getPanier();
+        		if(paniertmp != null){
+        			List<Commande> listCommandetmp = paniertmp.getListCommande();
+        			listCommandetmp.add(commande);
+        			paniertmp.setListCommande(listCommandetmp);
+        		}else{
+        			paniertmp.setListCommande(new ArrayList<Commande>());
+        			paniertmp.getListCommande().add(commande);
+        		}
+        		
+        		clientAcheteur.setPanier(paniertmp);
+        		
+        		panierRegistration.update(paniertmp);
+        		clientRegistration.update(clientAcheteur);
+        		
+        	}else{ 
+        		Client clientInconnu = clientRepository.findById(idCli);
+        		commande.setClientAcheteur(clientInconnu);
+        		
+        		if(paniertmp != null){
+        			List<Commande> listCommandetmp = paniertmp.getListCommande();
+        			listCommandetmp.add(commande);
+        			paniertmp.setListCommande(listCommandetmp);
+        		}else{
+        			paniertmp.setListCommande(new ArrayList<Commande>());
+        			paniertmp.getListCommande().add(commande);
+        		}
+        	}
         	
         	commandeRegistration.update(commande);
         	
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "ajouter panier", "ajouter panier");
             facesContext.addMessage(null, m);
         } catch (Exception e) {
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "erreur", "MAJ fail");

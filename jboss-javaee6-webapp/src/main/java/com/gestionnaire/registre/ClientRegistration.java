@@ -44,4 +44,10 @@ public class ClientRegistration {
         em.persist(client);
         memberEventSrc.fire(client);
     }
+
+	public void update(Client client) {
+		  log.info("update client  " + client.getIdClient());
+	      em.merge(client);
+	      memberEventSrc.fire(client);
+	}
 }

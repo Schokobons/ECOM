@@ -78,6 +78,7 @@ public class LivreAchatController {
         		commande.setClientAcheteur(clientAcheteur);
         	else 
         		commande.setClientAcheteur(clientRepository.findById(idCli));
+        	
         	commandeRegistration.update(commande);
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
             facesContext.addMessage(null, m);

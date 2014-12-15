@@ -50,61 +50,35 @@
     
     <ui:define name="content">
 
-  
-    <h:panelGroup rendered="#{livreAchatController.infoLivre}">
-    
-    <h:outputText value="Info#{livreAchatController.commandeInfo.idCommande}"></h:outputText>
-    
-    </h:panelGroup>
-       
-       <h:panelGroup rendered="#{!livreAchatController.infoLivre}">
-    
-         <h2>Commandes</h2>
-          <h:panelGroup rendered="#{empty commandes}">
-            <em>No commandes.</em>
+	<!-- Client connecter -->
+	<h:panelGroup rendered="#{LoginBean.isConnected}">
+	
+	<h2>Panier</h2>
+          <h:panelGroup rendered="#{PanierController.paniertmp == null}">
+            <em>Le panier est vide</em>
         </h:panelGroup>
-        <h:dataTable var="_commande" value="#{commandes}"
+	 <h:dataTable var="_panier" value="#{commandesPanier}"
             styleClass="simpletablestyle">
             <h:column>
-                <f:facet name="header">Id</f:facet>
-                #{_commande[0].idCommande}
-            </h:column>
-             <h:column>
-                <f:facet name="header">Prix</f:facet>
-                #{_commande[0].montantBase}
-            </h:column>
-             <h:column>
-                <f:facet name="header">Acheteur</f:facet>
-                #{_commande[2].nom}
-            </h:column>
-            <h:column>
                 <f:facet name="header">Nom</f:facet>
-                #{_commande[1]}
+                #{_panier[1].idCommande}
             </h:column>
-            <h:column>
-                <f:facet name="header">Acheter</f:facet>
-              <h:form>
-               		<h:commandButton value="acheter" action="#{panierController.ajouterPanier}" >
-               		
-					<f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{panierController.clientAcheteur}" />
-					<f:setPropertyActionListener value="#{_commande[0].idCommande}" target="#{panierController.idCom}" />
-					</h:commandButton >
-             </h:form>
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header">INFO</f:facet>
-              <h:form>
-               		<h:commandButton value="info" action="#{livreAchatController.info}" >
-               		
-					<f:setPropertyActionListener value="#{_commande[0].idCommande}" target="#{livreAchatController.idCom}" />
-					</h:commandButton >
-             </h:form>
-            </h:column>
-            
+     
         </h:dataTable>
-        	   
-       </h:panelGroup>
+	
+	</h:panelGroup>
+	
+	
+	<!-- Client non connecter -->
+	<h:panelGroup rendered="#{!LoginBean.isConnected}">
+	
+	<h2>Panier</h2>
+          <h:panelGroup rendered="#{PanierController.paniertmp == null}">
+            <em>Le panier est vide</em>
+        </h:panelGroup>
+	
+	</h:panelGroup>
+	
     </ui:define>
 
 </ui:composition>

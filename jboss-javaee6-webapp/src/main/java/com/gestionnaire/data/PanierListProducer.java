@@ -41,7 +41,6 @@ public class PanierListProducer {
 
     private List<Object[]> commandesPanier;
     
-    
     private Panier panierTrouve;
 
     // @Named provides access the return value via the EL variable name "members" in the UI (e.g.
