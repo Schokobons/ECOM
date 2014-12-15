@@ -23,10 +23,7 @@ import javax.enterprise.event.Reception;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Tuple;
-import javax.persistence.criteria.Selection;
 
-import com.bean.LoginBean;
 import com.gestionnaire.entities.Commande;
 
 import java.util.List;

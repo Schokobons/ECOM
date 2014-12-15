@@ -76,38 +76,6 @@ public class PanierController {
     
     private Client clientAcheteur;
     
-    public long getIdCli() {
-		return idCli;
-	}
-
-	public void setIdCli(long idCli) {
-		this.idCli = idCli;
-	}
-
-	public long getIdCom() {
-		return idCom;
-	}
-
-	public void setIdCom(long idCom) {
-		this.idCom = idCom;
-	}
-
-	public Client getClientAcheteur() {
-		return clientAcheteur;
-	}
-
-	public void setClientAcheteur(Client clientAcheteur) {
-		this.clientAcheteur = clientAcheteur;
-	}
-
-	public Panier getPaniertmp() {
-		return paniertmp;
-	}
-
-	public void setPaniertmp(Panier paniertmp) {
-		this.paniertmp = paniertmp;
-	}
-
 	private Panier paniertmp = null;
 	
 	public void ajouterPanier() throws Exception {
@@ -156,5 +124,37 @@ public class PanierController {
             facesContext.addMessage(null, m);
         }
     }
+    public long getIdCli() {
+		return idCli;
+	}
+
+	public void setIdCli(long idCli) {
+		this.idCli = idCli;
+	}
+
+	public long getIdCom() {
+		return idCom;
+	}
+
+	public void setIdCom(long idCom) {
+		this.idCom = idCom;
+	}
+
+	public Client getClientAcheteur() {
+		return clientAcheteur;
+	}
+
+	public void setClientAcheteur(Client clientAcheteur) {
+		this.clientAcheteur = clientAcheteur;
+	}
+
+	public Panier getPaniertmp() {
+		return paniertmp;
+	}
+
+	public void setPaniertmp(Panier paniertmp) {
+		this.paniertmp = paniertmp;
+	}
+
 	
 }

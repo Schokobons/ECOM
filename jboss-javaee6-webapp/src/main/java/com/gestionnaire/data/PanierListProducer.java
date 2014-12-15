@@ -23,10 +23,7 @@ import javax.enterprise.event.Reception;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.Tuple;
-import javax.persistence.criteria.Selection;
 
-import com.bean.LoginBean;
 import com.gestionnaire.entities.Commande;
 import com.gestionnaire.entities.Panier;
 
@@ -57,8 +54,13 @@ public class PanierListProducer {
 
     @PostConstruct
     public void retrieveAllPanierOrderedByName() {
-    	commandesPanier = panierRepository.findAllOrderedByName();
+    	commandesPanier = panierRepository.findAllPanier();
     }
+    
+   /* @PostConstruct
+    public void retrieveAllPanierOrderedByName() {
+    	commandesPanier = panierRepository.findPanierFor(1);
+    }*/
     
     public Panier findPanier(long idPanier){
     	panierTrouve = panierRepository.findById(idPanier);

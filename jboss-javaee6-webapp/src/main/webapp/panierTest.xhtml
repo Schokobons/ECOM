@@ -51,9 +51,9 @@
     <ui:define name="content">
 
 	<!-- Client connecter -->
-	<h:panelGroup rendered="#{LoginBean.isConnected}">
+	<h:panelGroup rendered="#{loginBean.isConnected}">
 	
-	<h2>Panier</h2>
+	<h2>Panier Connected</h2>
           <h:panelGroup rendered="#{PanierController.paniertmp == null}">
             <em>Le panier est vide</em>
         </h:panelGroup>
@@ -70,9 +70,9 @@
 	
 	
 	<!-- Client non connecter -->
-	<h:panelGroup rendered="#{!LoginBean.isConnected}">
+	<h:panelGroup rendered="#{!loginBean.isConnected}">
 	
-	<h2>Panier</h2>
+	<h2>Panier Not connected</h2>
           <h:panelGroup rendered="#{PanierController.paniertmp == null}">
             <em>Le panier est vide</em>
         </h:panelGroup>

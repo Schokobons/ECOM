@@ -31,10 +31,10 @@ public class Panier implements Serializable {
 	private Long idPanier;
 
 	@NotNull
-    private Double couttotal;
+    private Double coutTotal;
 
     @NotNull
-    private Integer nbitems;
+    private Integer nbItems;
     
 	@OneToMany(mappedBy="listCommandePanier")
 	private List<Commande> listCommande;
@@ -51,19 +51,19 @@ public class Panier implements Serializable {
 	}
 
 	public Double getCouttotal() {
-		return couttotal;
+		return coutTotal;
 	}
 
 	public void setCouttotal(Double couttotal) {
-		this.couttotal = couttotal;
+		this.coutTotal = couttotal;
 	}
 
 	public Integer getNbitems() {
-		return nbitems;
+		return nbItems;
 	}
 
 	public void setNbitems(Integer nbitems) {
-		this.nbitems = nbitems;
+		this.nbItems = nbitems;
 	}
 
 	public List<Commande> getListCommande() {
