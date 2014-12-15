@@ -20,24 +20,36 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     template="/WEB-INF/templates/default.xhtml">
+    <!-- partie de connection/deconnection  -->
+    <ui:define name="login">
+		<h:panelGroup rendered="#{!loginBean.isConnected}">
+		<h:form>
+			 <h:panelGrid columns="2">
+	           <h:outputText value="Email"></h:outputText>
+	           <h:inputText value="#{loginBean.email}"></h:inputText>
+	           <h:outputText value="Password"></h:outputText>
+	           <h:inputSecret value="#{loginBean.password}"></h:inputSecret>
+	       	</h:panelGrid>
+	      	<h:commandButton value="Login" action="#{loginBean.login}"></h:commandButton>
+		   </h:form>
+		  </h:panelGroup>
+		  <h:panelGroup rendered="#{loginBean.isConnected}">
+		  	<h:form>
+		  		<h:panelGrid columns="3">
+		    	<h:outputText value="Welcome #{loginBean.clientConnect.prenom}"></h:outputText>
+		    	<h:outputText value="#{loginBean.clientConnect.nom}"></h:outputText>
+		    	<h:commandButton value="Logout" action="#{loginBean.logout}"></h:commandButton>
+   	 			</h:panelGrid>
+  			 </h:form>
+ 		</h:panelGroup>
+ 		<h:form>
+  			<h:commandButton  action="index?faces-redirect=true" value="panier"></h:commandButton>
+  		</h:form>
+    </ui:define>
+    
+    
     <ui:define name="content">
-   <!--       
-        <h2>Livres</h2>
-          <h:panelGroup rendered="#{empty livre}">
-            <em>No livres.</em>
-        </h:panelGroup>
-        <h:dataTable var="_livre" value="#{livres}"
-            styleClass="simpletablestyle">
-            <h:column>
-                <f:facet name="header">Id</f:facet>
-                #{_livre.idLivre}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Nom</f:facet>
-                #{_livre.nom}
-            </h:column>
-        </h:dataTable>
-  -->      
+
   
     <h:panelGroup rendered="#{livreAchatController.infoLivre}">
     
@@ -102,4 +114,5 @@
 	   
        </h:panelGroup>
     </ui:define>
+
 </ui:composition>

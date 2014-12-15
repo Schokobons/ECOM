@@ -10,5 +10,5 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#achatLivre.xhtml" PATH="/achatLivre.xhtml"
-  SHAPE="389,154,0,0" model-entity="JSFProcessGroup" persistent="true"/>
+  SHAPE="368,136,50,25" model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>

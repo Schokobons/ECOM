@@ -19,8 +19,8 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
-    template="/WEB-INF/templates/default.xhtml">
-    <ui:define name="content">
+    template="WEB-INF/templates/login.xhtml">
+    <ui:define name="login">  
     <h:panelGroup rendered="#{!loginBean.isConnected}">
    		<h:form>
 		
@@ -45,5 +45,5 @@
         </h:form>
        </h:panelGroup>
        <h:commandButton value="test" action="achatLivre"></h:commandButton>
-    </ui:define>
+          </ui:define>
 </ui:composition>
