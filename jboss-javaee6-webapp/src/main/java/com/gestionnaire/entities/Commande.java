@@ -29,6 +29,10 @@ public class Commande implements Serializable {
 	private Long idCommande;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="listCommande")
+	private Panier listCommandePanier;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idVenteLivre")
 	private Livre ventelivre;
 	
