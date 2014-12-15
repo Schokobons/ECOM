@@ -54,13 +54,14 @@
 	<h:panelGroup rendered="#{loginBean.isConnected}">
 	
 	<h2>Panier Connected</h2>
-          <h:panelGroup rendered="#{PanierController.paniertmp == null}">
-            <em>Le panier est vide</em>
+
+        <h:panelGroup rendered="empty commandesPanier">
+            <em>Les paniers ss vide</em>
         </h:panelGroup>
-	 <h:dataTable var="_panier" value="#{commandesPanier}"
+        <h:dataTable var="_panier" value="#{commandesPanier}"
             styleClass="simpletablestyle">
             <h:column>
-                <f:facet name="header">Nom</f:facet>
+                <f:facet name="header">Prenom</f:facet>
                 #{_panier[1].idCommande}
             </h:column>
      

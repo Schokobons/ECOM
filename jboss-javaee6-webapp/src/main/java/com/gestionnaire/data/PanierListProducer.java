@@ -54,7 +54,8 @@ public class PanierListProducer {
 
     @PostConstruct
     public void retrieveAllPanierOrderedByName() {
-    	commandesPanier = panierRepository.findAllPanier();
+    	commandesPanier = panierRepository.findPanierFor(1);
+    	panierTrouve = panierRepository.findById((long) 1);
     }
     
    /* @PostConstruct

@@ -54,12 +54,12 @@ public class PanierRepository {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         
         CriteriaQuery<Object[]> criteria = cb.createQuery(Object[].class);
-        Root<Panier> panier = criteria.from(Panier.class);
+        Root<Commande> commande = criteria.from(Commande.class);
         
-        Join<Panier,Commande> listCommande = panier.join("listCommandePanier",JoinType.LEFT);
-        Join<Commande,Livre> listlivre = panier.join("ventelivre",JoinType.LEFT);
-        criteria.where(cb.equal(panier.get("clientConteneur"), id));
-        criteria.multiselect(panier,listCommande,listlivre).orderBy(cb.asc(panier.get("idCommande")));
+        Join<Commande,Panier> listpanier = commande.join("listCommandePanier",JoinType.LEFT);
+        Join<Commande,Livre> listlivre = commande.join("ventelivre",JoinType.LEFT);
+        criteria.where(cb.equal(listpanier.get("clientConteneur"), id));
+        criteria.multiselect(listpanier,commande,listlivre).orderBy(cb.asc(commande.get("idCommande")));
 
         TypedQuery<Object[]> tq = em.createQuery(criteria);
         return tq.getResultList();
@@ -71,7 +71,7 @@ public class PanierRepository {
         CriteriaQuery<Object[]> criteria = cb.createQuery(Object[].class);
         Root<Commande> commande = criteria.from(Commande.class);
         
-        Join<Commande,Panier> listpanier = commande.join("listCommande",JoinType.LEFT);
+        Join<Commande,Panier> listpanier = commande.join("listCommandePanier",JoinType.LEFT);
         
         criteria.multiselect(listpanier,commande).orderBy(cb.asc(commande.get("idCommande")));
 
