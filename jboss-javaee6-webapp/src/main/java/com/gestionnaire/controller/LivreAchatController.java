@@ -60,6 +60,10 @@ public class LivreAchatController {
     private Client clientAcheteur;
 
     private long idCom;
+    
+    private boolean infoLivre = false;
+    
+    private Commande commandeInfo; 
         	
     public void acheter() throws Exception {
         try {
@@ -84,7 +88,39 @@ public class LivreAchatController {
         }
     }
     
-    public void acheter(long id) throws Exception {
+    public void info() throws Exception {
+        try {
+
+        	infoLivre = true;
+
+        	commandeInfo = commandeRepository.findById(idCom);
+        	
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "INFO", "info");
+            facesContext.addMessage(null, m);
+        } catch (Exception e) {
+            String errorMessage = getRootErrorMessage(e);
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "MAJ fail");
+            facesContext.addMessage(null, m);
+        }
+    }
+    
+    public Commande getCommandeInfo() {
+		return commandeInfo;
+	}
+
+	public void setCommandeInfo(Commande commandeInfo) {
+		this.commandeInfo = commandeInfo;
+	}
+
+	public boolean isInfoLivre() {
+		return infoLivre;
+	}
+
+	public void setInfoLivre(boolean infoLivre) {
+		this.infoLivre = infoLivre;
+	}
+
+	public void acheter(long id) throws Exception {
         try {
         	idCom =id;
         	long idCli = 1;

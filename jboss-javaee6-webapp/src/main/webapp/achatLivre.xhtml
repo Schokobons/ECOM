@@ -38,6 +38,15 @@
             </h:column>
         </h:dataTable>
   -->      
+  
+    <h:panelGroup rendered="#{livreAchatController.infoLivre}">
+    
+    <h:outputText value="Info#{livreAchatController.commandeInfo.idCommande}"></h:outputText>
+    
+    </h:panelGroup>
+       
+       <h:panelGroup rendered="#{!livreAchatController.infoLivre}">
+    
          <h2>Commandes</h2>
           <h:panelGroup rendered="#{empty commandes}">
             <em>No commandes.</em>
@@ -70,6 +79,17 @@
 					</h:commandButton >
              </h:form>
             </h:column>
+            
+            <h:column>
+                <f:facet name="header">INFO</f:facet>
+              <h:form>
+               		<h:commandButton value="info" action="#{livreAchatController.info}" >
+               		
+					<f:setPropertyActionListener value="#{_commande[0].idCommande}" target="#{livreAchatController.idCom}" />
+					</h:commandButton >
+             </h:form>
+            </h:column>
+            
         </h:dataTable>
         
         <h:form>
@@ -78,5 +98,8 @@
         </h:form>
         <h:outputText value="Welcome #{loginBean.clientConnect.prenom}"></h:outputText>
 	        	<h:outputText value="#{loginBean.clientConnect.nom}"></h:outputText>
+	        	
+	   
+       </h:panelGroup>
     </ui:define>
 </ui:composition>
