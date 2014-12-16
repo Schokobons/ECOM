@@ -69,51 +69,43 @@ public class PanierController {
 
     @Inject
     private ClientRepository clientRepository;
-	
-	private long idCli = 1;
-		
+			
     private long idCom;
     
-    private Client clientAcheteur;
+    private Client clientAcheteurP;
     
 	private Panier paniertmp = null;
 	
 	public void ajouterPanier() throws Exception {
         try {
-        	
+        	long idCli = 1;
         	Commande commande = commandeRepository.findById(idCom);
         	
         	//client connecter
-        	if (clientAcheteur != null){
-        		commande.setClientAcheteur(clientAcheteur);
+        	if (clientAcheteurP != null){
+        		commande.setClientAcheteur(clientAcheteurP);
         		
-        		paniertmp = clientAcheteur.getPanier();
-        		if(paniertmp != null){
-        			List<Commande> listCommandetmp = paniertmp.getListCommande();
-        			listCommandetmp.add(commande);
-        			paniertmp.setListCommande(listCommandetmp);
-        		}else{
-        			paniertmp.setListCommande(new ArrayList<Commande>());
-        			paniertmp.getListCommande().add(commande);
-        		}
+        		//paniertmp = clientAcheteurP.getPanier();
+        		paniertmp = clientAcheteurP.getPanier();
         		
-        		clientAcheteur.setPanier(paniertmp);
+        		paniertmp.setListCommande(new ArrayList<Commande>());
+        		paniertmp.getListCommande().add(commande);
+        		
+        		paniertmp.setNbitems(paniertmp.getNbitems()+1);
+        		
+        		paniertmp.setCouttotal(paniertmp.getCouttotal()+commande.getMontantBase());
+        		
+        		clientAcheteurP.setPanier(paniertmp);
+        		
+        		commande.setListCommandePanier(paniertmp);
         		
         		panierRegistration.update(paniertmp);
-        		clientRegistration.update(clientAcheteur);
+        		clientRegistration.update(clientAcheteurP);
         		
         	}else{ //client non connecter
         		Client clientInconnu = clientRepository.findById(idCli);
         		commande.setClientAcheteur(clientInconnu);
         		
-        		if(paniertmp != null){
-        			List<Commande> listCommandetmp = paniertmp.getListCommande();
-        			listCommandetmp.add(commande);
-        			paniertmp.setListCommande(listCommandetmp);
-        		}else{
-        			paniertmp.setListCommande(new ArrayList<Commande>());
-        			paniertmp.getListCommande().add(commande);
-        		}
         	}
         	
         	commandeRegistration.update(commande);
@@ -125,14 +117,7 @@ public class PanierController {
             facesContext.addMessage(null, m);
         }
     }
-    public long getIdCli() {
-		return idCli;
-	}
-
-	public void setIdCli(long idCli) {
-		this.idCli = idCli;
-	}
-
+	
 	public long getIdCom() {
 		return idCom;
 	}
@@ -141,12 +126,12 @@ public class PanierController {
 		this.idCom = idCom;
 	}
 
-	public Client getClientAcheteur() {
-		return clientAcheteur;
+	public Client getClientAcheteurP() {
+		return clientAcheteurP;
 	}
 
-	public void setClientAcheteur(Client clientAcheteur) {
-		this.clientAcheteur = clientAcheteur;
+	public void setClientAcheteurP(Client clientAcheteurP) {
+		this.clientAcheteurP = clientAcheteurP;
 	}
 
 	public Panier getPaniertmp() {

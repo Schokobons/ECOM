@@ -160,4 +160,13 @@ public class Commande implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public Panier getListCommandePanier() {
+		return listCommandePanier;
+	}
+
+	public void setListCommandePanier(Panier listCommandePanier) {
+		this.listCommandePanier = listCommandePanier;
+	}
+
 }

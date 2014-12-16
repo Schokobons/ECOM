@@ -86,7 +86,7 @@
               <h:form>
                		<h:commandButton value="acheter" action="#{panierController.ajouterPanier}" >
                		
-					<f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{panierController.clientAcheteur}" />
+					<f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{panierController.clientAcheteurP}" />
 					<f:setPropertyActionListener value="#{_commande[0].idCommande}" target="#{panierController.idCom}" />
 					</h:commandButton >
              </h:form>
