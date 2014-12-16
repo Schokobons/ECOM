@@ -55,7 +55,6 @@
    	<f:selectItem itemValue="Bac +2" itemLabel="Bac + 3" />
    	 	<f:selectItem itemValue="Bac+ 3-5" itemLabel="Bac+ 3-5" />
 </h:selectOneMenu> 
-               <!-- -->
                 
 
             </h:panelGrid>
@@ -90,11 +89,7 @@
                 <h:message for="montantBase" errorClass="invalid" />
              
           
-                <h:outputLabel for="tempsEnchere" value="Durée de l'enchère (en jours):" />
-                <h:inputText id="tempsEnchere" value="#{newCommande.tempsEnchere}" />
-                <h:message for="tempsEnchere" errorClass="invalid" />
-             
-                <h:outputLabel for="nom" value="Nom de l'auteur:" />
+           <h:outputLabel for="nom" value="Nom de l'auteur:" />
                 <h:inputText id="nom" value="#{newAuteur.nom}" />
                 <h:message for="nom" errorClass="invalid" />
 
@@ -102,8 +97,20 @@
                 <h:inputText id="prenom" value="#{newAuteur.prenom}" />
                 <h:message for="prenom" errorClass="invalid" />
           
-                <h:outputLabel for="Catégorie" value="Catégorie:" />
+          
+          	
+                 <h:selectOneMenu id="tempsEnchere" value="#{newCommande.tempsEnchere}">
+                 <h:outputLabel for="tempsEnchere" value="Durée de l'enchère" />
+   	<f:selectItem itemValue="1" itemLabel="1 jour" />
+   	<f:selectItem itemValue="3" itemLabel="2 jours" />
+   	<f:selectItem itemValue="5" itemLabel="3 jours" />
+   	 	<f:selectItem itemValue="10" itemLabel="10 jours" />
+</h:selectOneMenu> 
+          
+               
                  <h:selectOneMenu id="Catégorie" value="#{newCategorie.nom}">
+                 <h:outputLabel for="Catégorie" value="Catégorie:" />
+                 
    	<f:selectItem itemValue="College" itemLabel="College" />
    	<f:selectItem itemValue="Lycee" itemLabel="Lycee" />
    	<f:selectItem itemValue="Bac +2" itemLabel="Bac + 3" />
