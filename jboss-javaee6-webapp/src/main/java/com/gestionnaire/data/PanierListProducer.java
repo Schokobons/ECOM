@@ -21,9 +21,12 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Observes;
 import javax.enterprise.event.Reception;
 import javax.enterprise.inject.Produces;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.bean.LoginBean;
+import com.gestionnaire.entities.Client;
 import com.gestionnaire.entities.Commande;
 import com.gestionnaire.entities.Panier;
 
@@ -54,7 +57,18 @@ public class PanierListProducer {
 
     @PostConstruct
     public void retrieveAllPanierOrderedByName() {
-    	commandesPanier = panierRepository.findPanierFor(1);
+    	LoginBean loginBean = (LoginBean) FacesContext.getCurrentInstance().
+    			getExternalContext().getSessionMap().get("loginBean");
+    	if ( loginBean != null ){
+	    	Client client = loginBean.getClientConnect();
+	    	if ( client != null)
+	    		commandesPanier = panierRepository.findPanierFor(client.getIdClient());
+	    	else
+	    		commandesPanier = panierRepository.findPanierFor(1);
+    	}else {
+    		commandesPanier = panierRepository.findPanierFor(1);
+    	}
+    	panierTrouve = panierRepository.findById((long) 1);
     	panierTrouve = panierRepository.findById((long) 1);
     }
     
