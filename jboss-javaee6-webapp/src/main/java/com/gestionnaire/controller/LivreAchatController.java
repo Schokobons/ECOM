@@ -61,24 +61,16 @@ public class LivreAchatController {
     @Inject
     private ClientRepository clientRepository;
     
+    PanierController panier;
+    
     private Client clientAcheteur;
 
     private long idCom;
     
     private boolean infoLivre = false;
 
-    private boolean merci = false;
-    
     private Commande commandeInfo; 
-    
-    private String addr;
-    
-    private Long coord;
-    
-    private Long codePost;
-    
-    private String ville;
-        	
+            	
     public void acheter() throws Exception {
         try {
         	long idCli = 1;
@@ -118,24 +110,7 @@ public class LivreAchatController {
             facesContext.addMessage(null, m);
         }
     }
-
-	public void validerPanier() throws Exception {
-        try {
-        	setMerci(true);
-        	
-        	//client connecter avant l'ajout dans le panier
-        	//vide le panier
-        	clientAcheteur.setPanier(null);
-        	clientRegistration.update(clientAcheteur);
-        	
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
-            facesContext.addMessage(null, m);
-        } catch (Exception e) {
-            String errorMessage = getRootErrorMessage(e);
-            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, errorMessage, "MAJ fail");
-            facesContext.addMessage(null, m);
-        }
-    }
+    
     private String getRootErrorMessage(Exception e) {
         // Default to general error message that registration failed.
         String errorMessage = "Registration failed. See server log for more information";
@@ -171,38 +146,7 @@ public class LivreAchatController {
 		this.clientAcheteur = clientAcheteur;
 	}
 
-	public String getAddr() {
-		return addr;
-	}
-
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
-
-	public Long getCoord() {
-		return coord;
-	}
-
-	public void setCoord(Long coord) {
-		this.coord = coord;
-	}
-
-	public Long getCodePost() {
-		return codePost;
-	}
-
-	public void setCodePost(Long codePost) {
-		this.codePost = codePost;
-	}
-
-	public String getVille() {
-		return ville;
-	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
-	}
-	   
+		   
     public Commande getCommandeInfo() {
 		return commandeInfo;
 	}
@@ -217,14 +161,6 @@ public class LivreAchatController {
 
 	public void setInfoLivre(boolean infoLivre) {
 		this.infoLivre = infoLivre;
-	}
-
-	public boolean isMerci() {
-		return merci;
-	}
-
-	public void setMerci(boolean merci) {
-		this.merci = merci;
 	}
 	
 }

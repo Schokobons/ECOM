@@ -35,6 +35,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import com.gestionnaire.entities.Client;
 import com.gestionnaire.entities.Commande;
 import com.gestionnaire.entities.Livre;
+import com.gestionnaire.entities.Panier;
 
 import java.util.List;
 
@@ -73,6 +74,17 @@ public class CommandeRepository {
         criteria.select(commande);
         
         criteria.where(cb.equal(commande.get("idCommande"), idCommande));
+		return em.createQuery(criteria).getResultList().get(0);
+	}
+
+	public Commande findCommandePanierFor(Panier paniertmp) {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Commande> criteria = cb.createQuery(Commande.class);
+        Root<Commande> commande = criteria.from(Commande.class);
+        criteria.select(commande);
+        
+        criteria.where(cb.equal(commande.get("listCommandePanier"), paniertmp));
 		return em.createQuery(criteria).getResultList().get(0);
 	}
 }

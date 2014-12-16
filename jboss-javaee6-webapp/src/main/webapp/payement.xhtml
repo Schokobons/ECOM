@@ -50,7 +50,7 @@
     
     <ui:define name="content">
     
-    <h:panelGroup rendered="#{!livreAchatController.merci}">
+    <h:panelGroup rendered="#{!panierController.merci}">
     
             <h2>Entrée vos coordonnées pour finaliser l'achat</h2>
             
@@ -63,32 +63,32 @@
 				<h:outputText value="email : #{loginBean.clientConnect.email}" /> <br/> 
 				
            		<h:outputLabel for="addr" value="Adresse de livraison :" />
-                <h:inputText id="addr" value="#{livreAchatController.addr}" />
+                <h:inputText id="addr" value="#{panierController.addr}" />
                 <h:message for="addr" errorClass="invalid" />
 					
 				<h:outputLabel for="codePost" value="Code postal :" />
-                <h:inputText id="codePost" value="#{livreAchatController.codePost}" />
+                <h:inputText id="codePost" value="#{panierController.codePost}" />
                 <h:message for="codePost" errorClass="invalid" />
 				
 				<h:outputLabel for="ville" value="ville :" />
-                <h:inputText id="ville" value="#{livreAchatController.ville}" />
+                <h:inputText id="ville" value="#{panierController.ville}" />
                 <h:message for="ville" errorClass="invalid" />	
                 
                 <h:outputLabel for="carte" value="Numéro CB ou autre :" />
-                <h:inputText id="carte" value="#{livreAchatController.coord}" />
+                <h:inputText id="carte" value="#{panierController.coord}" />
                 <h:message for="carte" errorClass="invalid" />
                 
             </h:panelGrid>
             
             <h:form>
-               		<h:commandButton value="Valider" action="#{livreAchatController.validerPanier}">
+               		<h:commandButton value="Valider" action="#{panierController.validerPanier}">
                		
-					<f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{panierController.clientAcheteur}" />
+					<f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{panierController.clientAcheteurP}" />
 					</h:commandButton >
              </h:form>
  
  	</h:panelGroup>
- 	<h:panelGroup rendered="#{livreAchatController.merci}">
+ 	<h:panelGroup rendered="#{panierController.merci}">
  	
  	Achat confirmé <br /><br />
  	

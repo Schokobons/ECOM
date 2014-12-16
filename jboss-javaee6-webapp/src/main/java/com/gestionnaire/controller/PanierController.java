@@ -76,6 +76,19 @@ public class PanierController {
     
 	private Panier paniertmp = null;
 	
+	private boolean merci = false;
+	    
+	private Commande commandeInfo; 
+	    
+	private String addr;
+	   
+	private Long coord;
+	    
+	private Long codePost;
+	    
+	private String ville;
+	
+
 	public void ajouterPanier() throws Exception {
         try {
         	long idCli = 1;
@@ -118,6 +131,41 @@ public class PanierController {
         }
     }
 	
+	public void validerPanier() throws Exception {
+        try {
+        	setMerci(true);
+        	
+        	//client connecter avant l'ajout dans le panier
+        	if (clientAcheteurP != null){
+        		paniertmp = clientAcheteurP.getPanier();
+        		
+        		paniertmp.setListCommande(null);
+        		
+        		paniertmp.setNbitems(0);
+        		
+        		paniertmp.setCouttotal(0.0);
+        		
+        		clientAcheteurP.setPanier(paniertmp);
+
+        		panierRegistration.update(paniertmp);
+        		clientRegistration.update(clientAcheteurP);
+        		
+        		Commande commandesPanier;
+        		while((commandesPanier = commandeRepository.findCommandePanierFor(paniertmp))!= null){
+        			//Commande commandesPanier = commandeRepository.findCommandePanierFor(paniertmp);
+        			commandesPanier.setListCommandePanier(null);
+        			commandeRegistration.update(commandesPanier);
+        		}
+        	}
+        	
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
+            facesContext.addMessage(null, m);
+        } catch (Exception e) {
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "erreur", "MAJ fail");
+            facesContext.addMessage(null, m);
+        }
+    }
+	
 	public long getIdCom() {
 		return idCom;
 	}
@@ -142,5 +190,52 @@ public class PanierController {
 		this.paniertmp = paniertmp;
 	}
 
-	
+	public boolean isMerci() {
+		return merci;
+	}
+
+	public void setMerci(boolean merci) {
+		this.merci = merci;
+	}
+
+	public Commande getCommandeInfo() {
+		return commandeInfo;
+	}
+
+	public void setCommandeInfo(Commande commandeInfo) {
+		this.commandeInfo = commandeInfo;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	public Long getCoord() {
+		return coord;
+	}
+
+	public void setCoord(Long coord) {
+		this.coord = coord;
+	}
+
+	public Long getCodePost() {
+		return codePost;
+	}
+
+	public void setCodePost(Long codePost) {
+		this.codePost = codePost;
+	}
+
+	public String getVille() {
+		return ville;
+	}
+
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+
 }
