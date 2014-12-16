@@ -48,11 +48,13 @@
                 <h:inputText id="prenom" value="#{newAuteur.prenom}" />
                 <h:message for="prenom" errorClass="invalid" />
           
-                
-                <h:outputLabel for="categorieNom" value="Nom de la catégorie:" />
-                <h:inputText id="categorieNom" value="#{newCategorie.nom}" />
-                <h:message for="categorieNom" errorClass="invalid" />
-
+                                <h:outputLabel for="Catégorie" value="Catégorie:" />
+                               <h:selectOneMenu id="Catégorie" value="#{newCategorie.nom}">
+   	<f:selectItem itemValue="College" itemLabel="College" />
+   	<f:selectItem itemValue="Lycee" itemLabel="Lycee" />
+   	<f:selectItem itemValue="Bac +2" itemLabel="Bac + 3" />
+   	 	<f:selectItem itemValue="Bac+ 3-5" itemLabel="Bac+ 3-5" />
+</h:selectOneMenu> 
                <!-- -->
                 
 
@@ -100,12 +102,13 @@
                 <h:inputText id="prenom" value="#{newAuteur.prenom}" />
                 <h:message for="prenom" errorClass="invalid" />
           
-                
-                <h:outputLabel for="categorieNom" value="Nom de la catégorie:" />
-                <h:inputText id="categorieNom" value="#{newCategorie.nom}" />
-                <h:message for="categorieNom" errorClass="invalid" />
-
-               
+                <h:outputLabel for="Catégorie" value="Catégorie:" />
+                 <h:selectOneMenu id="Catégorie" value="#{newCategorie.nom}">
+   	<f:selectItem itemValue="College" itemLabel="College" />
+   	<f:selectItem itemValue="Lycee" itemLabel="Lycee" />
+   	<f:selectItem itemValue="Bac +2" itemLabel="Bac + 3" />
+   	 	<f:selectItem itemValue="Bac+ 3-5" itemLabel="Bac+ 3-5" />
+</h:selectOneMenu> 
                 
 
             </h:panelGrid>
