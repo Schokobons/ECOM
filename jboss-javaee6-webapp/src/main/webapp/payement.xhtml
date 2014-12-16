@@ -43,51 +43,61 @@
   			 </h:form>
  		</h:panelGroup>
  		<h:form>
-  			<h:commandButton  action="panierTest?faces-redirect=true" value="panier"></h:commandButton>
+  			<h:commandButton  action="index?faces-redirect=true" value="panier"></h:commandButton>
   		</h:form>
     </ui:define>
     
     
     <ui:define name="content">
+    
+    <h:panelGroup rendered="#{!livreAchatController.merci}">
+    
+            <h2>Entrée vos coordonnées pour finaliser l'achat</h2>
+            
+            <h:panelGrid columns="1" columnClasses="titleCell">
 
-	<!-- Client connecter -->
-	<h:panelGroup rendered="#{loginBean.isConnected}">
-	
-	<h2>Panier</h2>
-
-        <h:panelGroup rendered="empty commandesPanier">
-            <em>Le panier est vide</em>
-        </h:panelGroup>
-        <h:dataTable var="_panier" value="#{commandesPanier}"
-            styleClass="simpletablestyle">
-            <h:column>
-                <f:facet name="header">Nom</f:facet>
-                #{_panier[2].nom}
-            </h:column>
-            <h:column>
-                <f:facet name="header">cout</f:facet>
-                #{_panier[1].montantBase}
-            </h:column>
-     
-        </h:dataTable>
-        
- 		<h:form>
-        <h:commandButton  action="payement?faces-redirect=true" value="valider panier"></h:commandButton>
-		</h:form>
-	
-	</h:panelGroup>
-	
-	
-	<!-- Client non connecter -->
-	<h:panelGroup rendered="#{!loginBean.isConnected}">
-	
-	<h2>Panier</h2>
-          <h:panelGroup rendered="#{panierController.paniertmp == null}">
-            <em>Le panier est vide</em>
-        </h:panelGroup>
-	
-	</h:panelGroup>
-	
+				<h:outputText value="Nom : #{loginBean.clientConnect.nom}" /> 	<br/> 
+					
+				<h:outputText value="Prenom : #{loginBean.clientConnect.prenom}" /> <br/> 
+					
+				<h:outputText value="email : #{loginBean.clientConnect.email}" /> <br/> 
+				
+           		<h:outputLabel for="addr" value="Adresse de livraison :" />
+                <h:inputText id="addr" value="#{livreAchatController.addr}" />
+                <h:message for="addr" errorClass="invalid" />
+					
+				<h:outputLabel for="codePost" value="Code postal :" />
+                <h:inputText id="codePost" value="#{livreAchatController.codePost}" />
+                <h:message for="codePost" errorClass="invalid" />
+				
+				<h:outputLabel for="ville" value="ville :" />
+                <h:inputText id="ville" value="#{livreAchatController.ville}" />
+                <h:message for="ville" errorClass="invalid" />	
+                
+                <h:outputLabel for="carte" value="Numéro CB ou autre :" />
+                <h:inputText id="carte" value="#{livreAchatController.coord}" />
+                <h:message for="carte" errorClass="invalid" />
+                
+            </h:panelGrid>
+            
+            <h:form>
+               		<h:commandButton value="Valider" action="#{livreAchatController.validerPanier}">
+               		
+					<f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{panierController.clientAcheteur}" />
+					</h:commandButton >
+             </h:form>
+ 
+ 	</h:panelGroup>
+ 	<h:panelGroup rendered="#{livreAchatController.merci}">
+ 	
+ 	Achat confirmé <br /><br />
+ 	
+		Merci d'avoir commandé sur notre site. <br />
+		
+		<h:link value="Retour à l'accueil" outcome="achatLivre?faces-redirect=true" />
+ 	
+ 	</h:panelGroup>
+ 	
     </ui:define>
 
 </ui:composition>

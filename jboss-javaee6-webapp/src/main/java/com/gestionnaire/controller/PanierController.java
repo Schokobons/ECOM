@@ -83,6 +83,7 @@ public class PanierController {
         	
         	Commande commande = commandeRepository.findById(idCom);
         	
+        	//client connecter
         	if (clientAcheteur != null){
         		commande.setClientAcheteur(clientAcheteur);
         		
@@ -101,7 +102,7 @@ public class PanierController {
         		panierRegistration.update(paniertmp);
         		clientRegistration.update(clientAcheteur);
         		
-        	}else{ 
+        	}else{ //client non connecter
         		Client clientInconnu = clientRepository.findById(idCli);
         		commande.setClientAcheteur(clientInconnu);
         		
