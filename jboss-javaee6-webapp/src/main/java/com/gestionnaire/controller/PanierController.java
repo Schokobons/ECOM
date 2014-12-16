@@ -88,11 +88,17 @@ public class PanierController {
 	    
 	private String ville;
 	
+	private long item;
+	
 
 	public void ajouterPanier() throws Exception {
         try {
         	long idCli = 1;
         	Commande commande = commandeRepository.findById(idCom);
+        	
+        	if(commande.getClientAcheteur()!=null){
+        		return;
+        	}
         	
         	//client connecter
         	if (clientAcheteurP != null){
@@ -159,6 +165,41 @@ public class PanierController {
         	}
         	
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Achat!", "Achat reussi");
+            facesContext.addMessage(null, m);
+        } catch (Exception e) {
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "erreur", "MAJ fail");
+            facesContext.addMessage(null, m);
+        }
+    }
+	
+	public void supprimerItem() throws Exception {
+        try {
+        	long idCli = 1;
+        	Commande commande = commandeRepository.findById(item);
+        	        	
+        	//client connecter
+        	if (clientAcheteurP != null){
+        		paniertmp = clientAcheteurP.getPanier();
+        		
+        		paniertmp.getListCommande().remove(commande);
+        		
+        		paniertmp.setNbitems(paniertmp.getNbitems()-1);
+        		
+        		paniertmp.setCouttotal(paniertmp.getCouttotal()-commande.getMontantBase());
+        		
+        		clientAcheteurP.setPanier(paniertmp);
+        		
+        		commande.setClientAcheteur(null);
+        		commande.setListCommandePanier(null);
+            	commandeRegistration.update(commande);
+
+        		panierRegistration.update(paniertmp);
+        		clientRegistration.update(clientAcheteurP);
+        		
+        	}
+        	
+        	
+            FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "ajouter panier", "ajouter panier");
             facesContext.addMessage(null, m);
         } catch (Exception e) {
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_ERROR, "erreur", "MAJ fail");
@@ -236,6 +277,14 @@ public class PanierController {
 
 	public void setVille(String ville) {
 		this.ville = ville;
+	}
+
+	public long getItem() {
+		return item;
+	}
+
+	public void setItem(long item) {
+		this.item = item;
 	}
 
 }

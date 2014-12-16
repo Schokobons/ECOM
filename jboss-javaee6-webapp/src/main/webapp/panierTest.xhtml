@@ -55,7 +55,7 @@
 	
 	<h2>Panier</h2>
 
-        <h:panelGroup rendered="empty commandesPanier">
+        <h:panelGroup rendered="empty commandesPanier}">
             <em>Le panier est vide</em>
         </h:panelGroup>
         <h:dataTable var="_panier" value="#{commandesPanier}"
@@ -68,11 +68,26 @@
                 <f:facet name="header">cout</f:facet>
                 #{_panier[1].montantBase}
             </h:column>
+            <h:column>
+                <f:facet name="header">Supprimer</f:facet>
+              <h:form>
+               		<h:commandButton value="supprimer du panier" action="#{panierController.supprimerItem}" >
+               		
+					<f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{panierController.clientAcheteurP}" />
+					<f:setPropertyActionListener value="#{_panier[1].idCommande}" target="#{panierController.item}" />
+					</h:commandButton >
+             </h:form>
+            </h:column>
      
         </h:dataTable>
         
  		<h:form>
         <h:commandButton  action="payement?faces-redirect=true" value="valider panier"></h:commandButton>
+		</h:form>
+		
+		
+ 		<h:form>
+        <h:commandButton  action="achatLivre?faces-redirect=true" value="retour"></h:commandButton>
 		</h:form>
 	
 	</h:panelGroup>
@@ -82,7 +97,7 @@
 	<h:panelGroup rendered="#{!loginBean.isConnected}">
 	
 	<h2>Panier</h2>
-          <h:panelGroup rendered="#{panierController.paniertmp == null}">
+          <h:panelGroup rendered="#{_panier[0].nbItems == 0}">
             <em>Le panier est vide</em>
         </h:panelGroup>
 	

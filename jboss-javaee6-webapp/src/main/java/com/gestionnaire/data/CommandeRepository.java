@@ -59,9 +59,11 @@ public class CommandeRepository {
 
         Join<Commande,Livre> li = commande.join("ventelivre",JoinType.LEFT);
         Join<Commande,Client> clientAcheteur = commande.join("clientAcheteur",JoinType.LEFT);
-
+        
         criteria.multiselect(commande,li.get("nom"),clientAcheteur).orderBy(cb.asc(commande.get("ventelivre")));
 
+        //criteria.where(cb.equal(clientAcheteur, null));
+        
         TypedQuery<Object[]> tq = em.createQuery(criteria);
         return tq.getResultList();
     }

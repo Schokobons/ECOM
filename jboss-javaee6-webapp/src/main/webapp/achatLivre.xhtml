@@ -59,12 +59,14 @@
        
        <h:panelGroup rendered="#{!livreAchatController.infoLivre}">
     
-         <h2>Commandes</h2>
+         <h2>Articles</h2>
           <h:panelGroup rendered="#{empty commandes}">
-            <em>No commandes.</em>
+            <em>Pas d'article en vente.</em>
         </h:panelGroup>
         <h:dataTable var="_commande" value="#{commandes}"
             styleClass="simpletablestyle">
+            <!--  rendered="#{_commande[2].nom} == null}">-->
+            
             <h:column>
                 <f:facet name="header">Id</f:facet>
                 #{_commande[0].idCommande}
@@ -84,7 +86,7 @@
             <h:column>
                 <f:facet name="header">Acheter</f:facet>
               <h:form>
-               		<h:commandButton value="acheter" action="#{panierController.ajouterPanier}" >
+               		<h:commandButton value="ajouter panier" action="#{panierController.ajouterPanier}" >
                		
 					<f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{panierController.clientAcheteurP}" />
 					<f:setPropertyActionListener value="#{_commande[0].idCommande}" target="#{panierController.idCom}" />
@@ -101,6 +103,7 @@
 					</h:commandButton >
              </h:form>
             </h:column>
+            
             
         </h:dataTable>
         	   
