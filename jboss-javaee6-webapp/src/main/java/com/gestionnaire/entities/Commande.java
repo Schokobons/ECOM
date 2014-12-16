@@ -1,5 +1,6 @@
 package com.gestionnaire.entities;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.io.Serializable;
@@ -52,12 +53,14 @@ public class Commande implements Serializable {
 	private List<ListeParticipant> participants;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-    protected Date startDate;	
+    protected Calendar startDate;	
 	
 	@Temporal(TemporalType.TIMESTAMP)
-    protected Date endDate;
+    protected Calendar endDate;
 	
 	private float nomtantActuel;
+	
+	private int tempsEnchere;
 	
 	private boolean isEnchere;
 	
@@ -113,19 +116,19 @@ public class Commande implements Serializable {
 		this.participants = participants;
 	}
 
-	public Date getStartDate() {
+	public Calendar getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(Calendar startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public Calendar getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(Calendar endDate) {
 		this.endDate = endDate;
 	}
 
@@ -167,6 +170,14 @@ public class Commande implements Serializable {
 
 	public void setListCommandePanier(Panier listCommandePanier) {
 		this.listCommandePanier = listCommandePanier;
+	}
+
+	public int getTempsEnchere() {
+		return tempsEnchere;
+	}
+
+	public void setTempsEnchere(int tempsEnchere) {
+		this.tempsEnchere = tempsEnchere;
 	}
 
 }

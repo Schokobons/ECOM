@@ -87,13 +87,10 @@
                 <h:inputText id="montantBase" value="#{newCommande.montantBase}" />
                 <h:message for="montantBase" errorClass="invalid" />
              
-             	<h:outputLabel for="startDate" value="Date de départ:" />
-                <h:inputText id="startDate" value="#{newCommande.startDate}" />
-                <h:message for="startDate" errorClass="invalid" />
-                
-                <h:outputLabel for="endDate" value="Date de fin:" />
-                <h:inputText id="endDate" value="#{newCommande.endDate}" />
-                <h:message for="endDate" errorClass="invalid" />
+          
+                <h:outputLabel for="tempsEnchere" value="Durée de l'enchère (en jours):" />
+                <h:inputText id="tempsEnchere" value="#{newCommande.tempsEnchere}" />
+                <h:message for="tempsEnchere" errorClass="invalid" />
              
                 <h:outputLabel for="nom" value="Nom de l'auteur:" />
                 <h:inputText id="nom" value="#{newAuteur.nom}" />
@@ -108,7 +105,7 @@
                 <h:inputText id="categorieNom" value="#{newCategorie.nom}" />
                 <h:message for="categorieNom" errorClass="invalid" />
 
-               <!-- -->
+               
                 
 
             </h:panelGrid>
@@ -117,10 +114,11 @@
                 <h:panelGrid columns="2">
                     <h:commandButton id="register"
                         action="#{commandeController.registerEnchere}"
-                        value="Valider" styleClass="register" >
+                        value="Valider" styleClass="register" />
+                        <!-- 
                         <f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{CommandeController.clientAcheteur}" />
                     </h:commandButton >
-                        
+                         -->
                     <h:messages styleClass="messages"
                         errorClass="invalid" infoClass="valid"
                         warnClass="warning" globalOnly="true" />

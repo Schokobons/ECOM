@@ -17,6 +17,7 @@
 package com.gestionnaire.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -46,6 +47,7 @@ import com.gestionnaire.registre.LivreRegistration;
 @Model
 public class CommandeController {
 
+	
     @Inject
     private FacesContext facesContext;
 
@@ -68,6 +70,7 @@ public class CommandeController {
 
     private Client clientAcheteur;
     
+  
     @Produces
     @Named
     private Auteur newAuteur;
@@ -136,7 +139,12 @@ public class CommandeController {
     
     public void registerEnchere() throws Exception {
         try {
-        
+        	//Gestion des dates
+        	newCommande.setStartDate(Calendar.getInstance());
+        	Calendar dateFinCalculée = Calendar.getInstance();
+        	dateFinCalculée.add(Calendar.DATE,newCommande.getTempsEnchere());
+        	newCommande.setEndDate(dateFinCalculée);
+        	
         	
         	newCommande.setNomtantActuel(newCommande.getMontantBase());
             newCommande.setEnchere(true);
