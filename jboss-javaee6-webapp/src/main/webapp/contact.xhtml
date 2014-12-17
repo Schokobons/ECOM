@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="/WEB-INF/templates/default.xhtml">
+    <!-- partie de connection/deconnection  -->
+    <ui:define name="login">
+		<h:panelGroup rendered="#{!loginBean.isConnected}">
+		<h:form>
+			 <h:panelGrid columns="2">
+	           <h:outputText value="Email"></h:outputText>
+	           <h:inputText class="newsletter_input" value="#{loginBean.email}"></h:inputText>
+	           <h:outputText value="Password"></h:outputText>
+	           <h:inputSecret class="newsletter_input"  value="#{loginBean.password}"></h:inputSecret>
+	       	</h:panelGrid>
+	      	<h:commandButton image="resources/images/cnx.jpg" action="#{loginBean.login}"></h:commandButton>
+		   </h:form>
+		  </h:panelGroup>
+		  <h:panelGroup rendered="#{loginBean.isConnected}">
+		  	<h:form>
+		  		<h:panelGrid columns="3">
+		    	<h:outputText value="Welcome #{loginBean.clientConnect.prenom}"></h:outputText>
+		    	<h:outputText value="#{loginBean.clientConnect.nom}"></h:outputText>
+		    	<h:commandButton image="resources/images/dcnx.jpg" action="#{loginBean.logout}"></h:commandButton>
+   	 			</h:panelGrid>
+  			 </h:form>
+ 		</h:panelGroup>
+ 		
+    </ui:define>
+    
+     <ui:define name="content">
+      <div class="center_title_bar">Contact Us</div>
+      <div class="prod_box_big">
+        <div class="top_prod_box_big"></div>
+        <div class="center_prod_box_big">
+          <div class="contact_form">
+            <div class="form_row">
+              <label class="contact"><strong>Name:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+            <div class="form_row">
+              <label class="contact"><strong>Email:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+            <div class="form_row">
+              <label class="contact"><strong>Phone:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+            <div class="form_row">
+              <label class="contact"><strong>Company:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+            <div class="form_row">
+              <label class="contact"><strong>Message:</strong></label>
+              <textarea class="contact_textarea" ></textarea>
+            </div>
+            <div class="form_row"> <a href="#" class="contact">send</a> </div>
+          </div>
+        </div>
+        <div class="bottom_prod_box_big"></div>
+      </div>
+      </div>
+   </ui:define>
+
+</ui:composition>

@@ -1,0 +1,91 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="/WEB-INF/templates/default.xhtml">
+    <!-- partie de connection/deconnection  -->
+    <ui:define name="login">
+		<h:panelGroup rendered="#{!loginBean.isConnected}">
+		<h:form>
+			 <h:panelGrid columns="2">
+	           <h:outputText value="Email"></h:outputText>
+	           <h:inputText value="#{loginBean.email}"></h:inputText>
+	           <h:outputText class="newsletter_input" value="Password"></h:outputText>
+	           <h:inputSecret class="newsletter_input" value="#{loginBean.password}"></h:inputSecret>
+	       	</h:panelGrid>
+	      	<h:commandButton image="resources/images/cnx.jpg" action="#{loginBean.login}"></h:commandButton>
+		   </h:form>
+		  </h:panelGroup>
+		  <h:panelGroup rendered="#{loginBean.isConnected}">
+		  	<h:form>
+		  		<h:panelGrid columns="3">
+		    	<h:outputText value="Welcome #{loginBean.clientConnect.prenom}"></h:outputText>
+		    	<h:outputText value="#{loginBean.clientConnect.nom}"></h:outputText>
+		    	<h:commandButton image="resources/images/dcnx.jpg" action="#{loginBean.logout}"></h:commandButton>
+   	 			</h:panelGrid>
+  			 </h:form>
+ 		</h:panelGroup>
+ 		
+    </ui:define>
+    
+     <ui:define name="content">
+ <div class="center_content">
+      <div class="center_title_bar">Nouveau Client</div>
+      <div class="prod_box_big">
+        <div class="top_prod_box_big"></div>
+        <div class="center_prod_box_big">
+          <div class="contact_form">
+            <div class="form_row">
+              <label class="contact"><strong>Nom:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+			<div class="form_row">
+              <label class="contact"><strong>Prenom:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+            
+            <div class="form_row">
+              <label class="contact"><strong>Email:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+            <div class="form_row">
+              <label class="contact"><strong>Telephone:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+            <div class="form_row">
+              <label class="contact"><strong>Adresse:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+			<div class="form_row">
+              <label class="contact"><strong>Code Postal:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+			<div class="form_row">
+              <label class="contact"><strong>Commune:</strong></label>
+              <input type="text" class="contact_input" />
+            </div>
+            <div class="form_row"> <a href="#" class="contact">S'inscrire</a><a href="#" class="contact">Annuler</a> </div>
+          </div>
+		  
+        </div>
+        <div class="bottom_prod_box_big"></div>
+      </div>
+    </div>
+    <!-- end of center content -->
+    <div class="right_content">
+      <div class="shopping_cart">
+        <div class="cart_title">Panier</div>
+        <div class="cart_details"> 3 items <br />
+          <span class="border_cart"></span> Total: <span class="price">350$</span> </div>
+<!--         <div class="cart_icon"><a href="panier.html" title="header=[Checkout] body=[&nbsp;] fade=[on]"><img src="resources/images/shoppingcart.png" alt="" width="48" height="48" border="0" /></a></div> -->
+      </div>
+      <div class="title_box">Espace Client</div>
+        <div class="border_box">
+        <input type="text" name="newsletter" class="newsletter_input" value="your username"/><br/>
+        <input type="text" name="newsletter" class="newsletter_input" value="your password"/>
+        <a href="#" class="join">Connexion</a>
+        <a href="inscri_client.xhtml" class="join">Inscription</a> 		
+		</div>
+   </ui:define>
+
+</ui:composition>
