@@ -89,4 +89,45 @@ public class CommandeRepository {
         criteria.where(cb.equal(commande.get("listCommandePanier"), paniertmp));
 		return em.createQuery(criteria).getResultList().get(0);
 	}
+
+	public List<Object[]> findAllWhere(String recherche) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        
+        CriteriaQuery<Object[]> criteria = cb.createQuery(Object[].class);
+        Root<Commande> commande = criteria.from(Commande.class);
+        
+
+        Join<Commande,Livre> li = commande.join("ventelivre",JoinType.LEFT);
+        Join<Commande,Client> clientAcheteur = commande.join("clientAcheteur",JoinType.LEFT);
+        
+        
+        ParameterExpression<String> p = cb.parameter(String.class, "recherche");
+        
+        criteria.multiselect(commande,li.get("nom"),clientAcheteur)
+        .where(cb.like(li.<String>get("nom"), p)).orderBy(cb.asc(commande.get("ventelivre")));
+
+       // criteria.where(cb.like(li.<String>get("nom"), recherche));
+        
+        TypedQuery<Object[]> tq = em.createQuery(criteria);
+        tq.setParameter("recherche", "%" + recherche + "%");
+        return tq.getResultList();
+	}
+	public List<Livre> findLivreWhere(String recherche) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        
+        CriteriaQuery<Livre> criteria = cb.createQuery(Livre.class);
+        Root<Livre> livre = criteria.from(Livre.class);
+           
+        ParameterExpression<String> p = cb.parameter(String.class, "recherche");
+        criteria.select(livre)
+        .where(cb.like(livre.<String>get("nom"), p)).orderBy(cb.asc(livre.get("nom")));
+        
+       
+
+       // criteria.where(cb.like(li.<String>get("nom"), recherche));
+        
+        TypedQuery<Livre> tq = em.createQuery(criteria);
+        tq.setParameter("recherche", "%" + recherche + "%");
+        return tq.getResultList();
+	}
 }
