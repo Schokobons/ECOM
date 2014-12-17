@@ -9,11 +9,11 @@
 		<h:form>
 			 <h:panelGrid columns="2">
 	           <h:outputText value="Email"></h:outputText>
-	           <h:inputText value="#{loginBean.email}"></h:inputText>
+	           <h:inputText class="newsletter_input" value="#{loginBean.email}"></h:inputText>
 	           <h:outputText value="Password"></h:outputText>
-	           <h:inputSecret value="#{loginBean.password}"></h:inputSecret>
+	           <h:inputSecret class="newsletter_input" value="#{loginBean.password}"></h:inputSecret>
 	       	</h:panelGrid>
-	      	<h:commandButton value="Login" action="#{loginBean.login}"></h:commandButton>
+	      	<h:commandButton image="resources/images/cnx.jpg" action="#{loginBean.login}"></h:commandButton>
 		   </h:form>
 		  </h:panelGroup>
 		  <h:panelGroup rendered="#{loginBean.isConnected}">
@@ -21,7 +21,7 @@
 		  		<h:panelGrid columns="3">
 		    	<h:outputText value="Welcome #{loginBean.clientConnect.prenom}"></h:outputText>
 		    	<h:outputText value="#{loginBean.clientConnect.nom}"></h:outputText>
-		    	<h:commandButton value="Logout" action="#{loginBean.logout}"></h:commandButton>
+		    	<h:commandButton image="resources/images/dcnx.jpg" action="#{loginBean.logout}"></h:commandButton>
    	 			</h:panelGrid>
   			 </h:form>
  		</h:panelGroup>
