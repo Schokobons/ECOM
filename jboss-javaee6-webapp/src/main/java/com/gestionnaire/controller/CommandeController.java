@@ -53,30 +53,36 @@ public class CommandeController {
 
     @Inject
     private CommandeRegistration commandeRegistration;
+    
+    @Inject
+    private LivreRegistration livreRegistration;
+    
+    @Inject
+    private AuteurRegistration auteurRegistration;
+    
+    @Inject
+    private CategoriesRegistration categoriesRegistration;
+    
+    @Inject
+    private ClientRegistration clientRegistration;
 
     @Produces
     @Named
     private Commande newCommande;
     
-    @Inject
-    private LivreRegistration livreRegistration;
+
 
     @Produces
     @Named
     private Livre newLivreVente;
-    
-    @Inject
-    private AuteurRegistration auteurRegistration;
+
 
     private Client clientAcheteur;
     
-  
     @Produces
     @Named
     private Auteur newAuteur;
-    
-    @Inject
-    private CategoriesRegistration categoriesRegistration;
+   
 
     @Produces
     @Named
@@ -118,9 +124,18 @@ public class CommandeController {
             livreRegistration.register(newLivreVente);
             
             newCommande.setVentelivre(newLivreVente); 
-            newCommande.setClientAcheteur(clientAcheteur);
+            newCommande.setClientCreator(clientAcheteur);
+   
+            
+        	//if ( clientAcheteur.getAchatsFait() == null)
+        	///	clientAcheteur.setAchatsFait(new ArrayList<Commande>());
+        	//clientAcheteur.getAchatsFait().add(newCommande);
+        	
+        	//clientRegistration.update(clientAcheteur);
         	
         	commandeRegistration.register(newCommande);
+        	//newCommande.setClientCreator(clientAcheteur);
+        	//commandeRegistration.update(newCommande);
         	
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
             facesContext.addMessage(null, m);
@@ -169,6 +184,15 @@ public class CommandeController {
             
             newCommande.setVentelivre(newLivreVente);  	
         	newCommande.setClientAcheteur(clientAcheteur);
+        	
+        	if ( clientAcheteur.getAchatsFait() == null)
+        		clientAcheteur.setAchatsFait(new ArrayList<Commande>());
+        	clientAcheteur.getAchatsFait().add(newCommande);
+        	
+        	clientRegistration.update(clientAcheteur);
+         	
+        	
+        	
         	commandeRegistration.register(newCommande);
         	
             FacesMessage m = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registered!", "Registration successful");
@@ -202,5 +226,17 @@ public class CommandeController {
         // This is the root cause message
         return errorMessage;
     }
+
+
+	public Client getClientAcheteur() {
+		return clientAcheteur;
+	}
+
+
+	public void setClientAcheteur(Client clientAcheteur) {
+		this.clientAcheteur = clientAcheteur;
+	}
+    
+    
 
 }

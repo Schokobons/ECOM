@@ -20,6 +20,37 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     template="/WEB-INF/templates/default.xhtml">
+       <ui:define name="login">
+		<h:panelGroup rendered="#{!loginBean.isConnected}">
+		<h:form>
+			 <h:panelGrid columns="2">
+	           <h:outputText value="Email"></h:outputText>
+	           <h:inputText value="#{loginBean.email}"></h:inputText>
+	           <h:outputText value="Password"></h:outputText>
+	           <h:inputSecret value="#{loginBean.password}"></h:inputSecret>
+	       	</h:panelGrid>
+	      	<h:commandButton value="Login" action="#{loginBean.login}"></h:commandButton>
+		   </h:form>
+		  </h:panelGroup>
+		  <h:panelGroup rendered="#{loginBean.isConnected}">
+		  	<h:form>
+		  		<h:panelGrid columns="3">
+		    	<h:outputText value="Welcome #{loginBean.clientConnect.prenom}"></h:outputText>
+		    	<h:outputText value="#{loginBean.clientConnect.nom}"></h:outputText>
+		    	<h:commandButton value="Logout" action="#{loginBean.logout}"></h:commandButton>
+   	 			</h:panelGrid>
+  			 </h:form>
+ 		</h:panelGroup>
+ 		<h:form>
+  			<h:commandButton  action="panierTest?faces-redirect=true" value="panier"></h:commandButton>
+  		</h:form>
+    </ui:define> 
+    
+    
+    
+    
+    
+    
     <ui:define name="content">
       
       
@@ -63,7 +94,9 @@
                 <h:panelGrid columns="2">
                     <h:commandButton id="register"
                         action="#{commandeController.register}"
-                        value="Valider" styleClass="register" />
+                        value="Valider" styleClass="register">
+                         <f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{commandeController.clientAcheteur}" />
+                    </h:commandButton >
                     <h:messages styleClass="messages"
                         errorClass="invalid" infoClass="valid"
                         warnClass="warning" globalOnly="true" />
@@ -124,11 +157,11 @@
                 <h:panelGrid columns="2">
                     <h:commandButton id="register"
                         action="#{commandeController.registerEnchere}"
-                        value="Valider" styleClass="register" />
-                        <!-- 
-                        <f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{CommandeController.clientAcheteur}" />
+                        value="Valider" styleClass="register" >
+                     
+                        <f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{commandeController.clientAcheteur}" />
                     </h:commandButton >
-                         -->
+                       
                     <h:messages styleClass="messages"
                         errorClass="invalid" infoClass="valid"
                         warnClass="warning" globalOnly="true" />
