@@ -25,9 +25,6 @@
    	 			</h:panelGrid>
   			 </h:form>
  		</h:panelGroup>
- 		<h:form>
-  			<h:commandButton  action="index?faces-redirect=true" image="resources/images/shoppingcart.png"></h:commandButton>
-  		</h:form>
     </ui:define>
     
      <ui:define name="content">
@@ -68,7 +65,7 @@
 									<h:commandButton value="acheter"
 										action="#{panierController.ajouterPanier}"
 										image="resources/images/cart.gif"
-										disabled="#{!LoginBean.isConnected}">
+										disabled="#{!loginBean.isConnected}">
 										<f:setPropertyActionListener
 											value="#{loginBean.clientConnect}"
 											target="#{panierController.clientAcheteurP}" />
