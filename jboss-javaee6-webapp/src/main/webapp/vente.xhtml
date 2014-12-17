@@ -16,160 +16,145 @@
     limitations under the License.
 -->
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    template="/WEB-INF/templates/default.xhtml">
-       <ui:define name="login">
-		<h:panelGroup rendered="#{!loginBean.isConnected}">
-		<h:form>
-			 <h:panelGrid columns="2">
-	           <h:outputText value="Email"></h:outputText>
-	           <h:inputText value="#{loginBean.email}"></h:inputText>
-	           <h:outputText value="Password"></h:outputText>
-	           <h:inputSecret value="#{loginBean.password}"></h:inputSecret>
-	       	</h:panelGrid>
-	      	<h:commandButton value="Login" action="#{loginBean.login}"></h:commandButton>
-		   </h:form>
-		  </h:panelGroup>
-		  <h:panelGroup rendered="#{loginBean.isConnected}">
-		  	<h:form>
-		  		<h:panelGrid columns="3">
-		    	<h:outputText value="Welcome #{loginBean.clientConnect.prenom}"></h:outputText>
-		    	<h:outputText value="#{loginBean.clientConnect.nom}"></h:outputText>
-		    	<h:commandButton value="Logout" action="#{loginBean.logout}"></h:commandButton>
-   	 			</h:panelGrid>
-  			 </h:form>
- 		</h:panelGroup>
- 		<h:form>
-  			<h:commandButton  action="panierTest?faces-redirect=true" value="panier"></h:commandButton>
-  		</h:form>
-    </ui:define> 
-    
-    
-    
-    
-    
-    
-    <ui:define name="content">
-      
-      
-        <h:form id="reg">
-            <h2>Vendre un livre en vente directe</h2>
-            
-            <h:panelGrid columns="3" columnClasses="titleCell">
-           
-           		<h:outputLabel for="name" value="Nom du livre:" />
-                <h:inputText id="name" value="#{newLivreVente.nom}" />
-                <h:message for="name" errorClass="invalid" />
-         
-                <h:outputLabel for="nbPages" value="Nombre de pages:" />
-                <h:inputText id="nbPages" value="#{newLivreVente.nbPages}" />
-                <h:message for="nbPages" errorClass="invalid" />
-                
-                <h:outputLabel for="montantBase" value="Prix :" />
-                <h:inputText id="montantBase" value="#{newCommande.montantBase}" />
-                <h:message for="montantBase" errorClass="invalid" />
-             
-                <h:outputLabel for="nom" value="Nom de l'auteur:" />
-                <h:inputText id="nom" value="#{newAuteur.nom}" />
-                <h:message for="nom" errorClass="invalid" />
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<div class="center_title_bar">Vendre un livre en vente directe</div>
+		<div class="prod_box_big">
+			<div class="top_prod_box_big"></div>
+			<div class="center_prod_box_big">
+				<h:form id="reg">
+					<h:panelGrid columns="3" columnClasses="titleCell">
 
-                <h:outputLabel for="prenom" value="Prenom de l'auteur:" />
-                <h:inputText id="prenom" value="#{newAuteur.prenom}" />
-                <h:message for="prenom" errorClass="invalid" />
-          
-                                <h:outputLabel for="Catégorie" value="Catégorie:" />
-                               <h:selectOneMenu id="Catégorie" value="#{newCategorie.nom}">
-   	<f:selectItem itemValue="College" itemLabel="College" />
-   	<f:selectItem itemValue="Lycee" itemLabel="Lycee" />
-   	<f:selectItem itemValue="Bac +2" itemLabel="Bac + 3" />
-   	 	<f:selectItem itemValue="Bac+ 3-5" itemLabel="Bac+ 3-5" />
-</h:selectOneMenu> 
-                
+						<h:outputLabel for="name" class="contact" value="Nom du livre:" />
+						<h:inputText id="name" class="contact_input"
+							value="#{newLivreVente.nom}" />
+						<h:message for="name" errorClass="invalid" />
 
-            </h:panelGrid>
+						<h:outputLabel for="nbPages" class="contact"
+							value="Nombre de pages:" />
+						<h:inputText id="nbPages" class="contact_input"
+							value="#{newLivreVente.nbPages}" />
+						<h:message for="nbPages" errorClass="invalid" />
 
-            <p>
-                <h:panelGrid columns="2">
-                    <h:commandButton id="register"
-                        action="#{commandeController.register}"
-                        value="Valider" styleClass="register">
-                         <f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{commandeController.clientAcheteur}" />
-                    </h:commandButton >
-                    <h:messages styleClass="messages"
-                        errorClass="invalid" infoClass="valid"
-                        warnClass="warning" globalOnly="true" />
-                </h:panelGrid>
-            </p>
-        </h:form>
-        
-        <h:form id="reg2">
-            <h2>Vendre un livre en enchère</h2>
-            
-            <h:panelGrid columns="3" columnClasses="titleCell">
-           
-           		<h:outputLabel for="name" value="Nom du livre:" />
-                <h:inputText id="name" value="#{newLivreVente.nom}" />
-                <h:message for="name" errorClass="invalid" />
-         
-                <h:outputLabel for="nbPages" value="Nombre de pages:" />
-                <h:inputText id="nbPages" value="#{newLivreVente.nbPages}" />
-                <h:message for="nbPages" errorClass="invalid" />
-                
-                <h:outputLabel for="montantBase" value="Prix de base:" />
-                <h:inputText id="montantBase" value="#{newCommande.montantBase}" />
-                <h:message for="montantBase" errorClass="invalid" />
-             
-          
-           <h:outputLabel for="nom" value="Nom de l'auteur:" />
-                <h:inputText id="nom" value="#{newAuteur.nom}" />
-                <h:message for="nom" errorClass="invalid" />
+						<h:outputLabel for="montantBase" class="contact" value="Prix :" />
+						<h:inputText id="montantBase" class="contact_input"
+							value="#{newCommande.montantBase}" />
+						<h:message for="montantBase" errorClass="invalid" />
 
-                <h:outputLabel for="prenom" value="Prenom de l'auteur:" />
-                <h:inputText id="prenom" value="#{newAuteur.prenom}" />
-                <h:message for="prenom" errorClass="invalid" />
-          
-          
-          	
-                 <h:selectOneMenu id="tempsEnchere" value="#{newCommande.tempsEnchere}">
-                 <h:outputLabel for="tempsEnchere" value="Durée de l'enchère" />
-   	<f:selectItem itemValue="1" itemLabel="1 jour" />
-   	<f:selectItem itemValue="3" itemLabel="2 jours" />
-   	<f:selectItem itemValue="5" itemLabel="3 jours" />
-   	 	<f:selectItem itemValue="10" itemLabel="10 jours" />
-</h:selectOneMenu> 
-          
-               
-                 <h:selectOneMenu id="Catégorie" value="#{newCategorie.nom}">
-                 <h:outputLabel for="Catégorie" value="Catégorie:" />
-                 
-   	<f:selectItem itemValue="College" itemLabel="College" />
-   	<f:selectItem itemValue="Lycee" itemLabel="Lycee" />
-   	<f:selectItem itemValue="Bac +2" itemLabel="Bac + 3" />
-   	 	<f:selectItem itemValue="Bac+ 3-5" itemLabel="Bac+ 3-5" />
-</h:selectOneMenu> 
-                
+						<h:outputLabel for="nom" class="contact" value="Nom de l'auteur:" />
+						<h:inputText id="nom" class="contact_input"
+							value="#{newAuteur.nom}" />
+						<h:message for="nom" errorClass="invalid" />
 
-            </h:panelGrid>
+						<h:outputLabel for="prenom" class="contact"
+							value="Prenom de l'auteur:" />
+						<h:inputText id="prenom" class="contact_input"
+							value="#{newAuteur.prenom}" />
+						<h:message for="prenom" errorClass="invalid" />
 
-            <p>
-                <h:panelGrid columns="2">
-                    <h:commandButton id="register"
-                        action="#{commandeController.registerEnchere}"
-                        value="Valider" styleClass="register" >
-                     
-                        <f:setPropertyActionListener value="#{loginBean.clientConnect}" target="#{commandeController.clientAcheteur}" />
-                    </h:commandButton >
-                       
-                    <h:messages styleClass="messages"
-                        errorClass="invalid" infoClass="valid"
-                        warnClass="warning" globalOnly="true" />
-                </h:panelGrid>
-            </p>
-        </h:form>
-        
-       
-       
-    </ui:define>
+						<h:outputLabel for="Catégorie" class="contact" value="Catégorie:" />
+						<h:selectOneMenu id="Catégorie" value="#{newCategorie.nom}">
+							<f:selectItem itemValue="College" itemLabel="College" />
+							<f:selectItem itemValue="Lycee" itemLabel="Lycee" />
+							<f:selectItem itemValue="Bac +2" itemLabel="Bac + 3" />
+							<f:selectItem itemValue="Bac+ 3-5" itemLabel="Bac+ 3-5" />
+						</h:selectOneMenu>
+
+
+					</h:panelGrid>
+
+					<p>
+						<h:panelGrid columns="2">
+							<h:commandButton id="register"
+								action="#{commandeController.register}" value="Valider"
+								styleClass="register" />
+							<h:messages styleClass="messages" errorClass="invalid"
+								infoClass="valid" warnClass="warning" globalOnly="true" />
+						</h:panelGrid>
+					</p>
+				</h:form>
+			</div>
+		</div>
+		<div class="center_title_bar">Vendre un livre en Enchères</div>
+		<div class="prod_box_big">
+			<div class="top_prod_box_big"></div>
+			<div class="center_prod_box_big">
+
+				<h:form id="reg2">
+					<h:panelGrid columns="3" columnClasses="titleCell">
+
+						<h:outputLabel for="name" class="contact" value="Nom du livre:" />
+						<h:inputText id="name" class="contact_input"
+							value="#{newLivreVente.nom}" />
+						<h:message for="name" errorClass="invalid" />
+
+						<h:outputLabel for="nbPages" class="contact"
+							value="Nombre de pages:" />
+						<h:inputText id="nbPages" class="contact_input"
+							value="#{newLivreVente.nbPages}" />
+						<h:message for="nbPages" errorClass="invalid" />
+
+						<h:outputLabel for="montantBase" class="contact"
+							value="Prix de base:" />
+						<h:inputText id="montantBase" class="contact_input"
+							value="#{newCommande.montantBase}" />
+						<h:message for="montantBase" errorClass="invalid" />
+
+
+						<h:outputLabel for="nom" class="contact" value="Nom de l'auteur:" />
+						<h:inputText id="nom" class="contact_input"
+							value="#{newAuteur.nom}" />
+						<h:message for="nom" errorClass="invalid" />
+
+						<h:outputLabel for="prenom" class="contact"
+							value="Prenom de l'auteur:" />
+						<h:inputText id="prenom" class="contact_input"
+							value="#{newAuteur.prenom}" />
+						<h:message for="prenom" errorClass="invalid" />
+
+
+
+						<h:selectOneMenu id="tempsEnchere"
+							value="#{newCommande.tempsEnchere}">
+							<h:outputLabel for="tempsEnchere" class="contact_input"
+								value="Durée de l'enchère" />
+							<f:selectItem itemValue="1" itemLabel="1 jour" />
+							<f:selectItem itemValue="3" itemLabel="2 jours" />
+							<f:selectItem itemValue="5" itemLabel="3 jours" />
+							<f:selectItem itemValue="10" itemLabel="10 jours" />
+						</h:selectOneMenu>
+
+
+						<h:selectOneMenu id="Catégorie" value="#{newCategorie.nom}">
+							<h:outputLabel for="Catégorie" class="contact" value="Catégorie:" />
+
+							<f:selectItem itemValue="College" itemLabel="College" />
+							<f:selectItem itemValue="Lycee" itemLabel="Lycee" />
+							<f:selectItem itemValue="Bac +2" itemLabel="Bac + 3" />
+							<f:selectItem itemValue="Bac+ 3-5" itemLabel="Bac+ 3-5" />
+						</h:selectOneMenu>
+
+
+					</h:panelGrid>
+
+					<p>
+						<h:panelGrid columns="2">
+							<h:commandButton id="register"
+								action="#{commandeController.registerEnchere}" value="Valider"
+								styleClass="register" />
+
+							<h:messages styleClass="messages" errorClass="invalid"
+								infoClass="valid" warnClass="warning" globalOnly="true" />
+						</h:panelGrid>
+
+					</p>
+				</h:form>
+			</div>
+		</div>
+
+
+	</ui:define>
 </ui:composition>
