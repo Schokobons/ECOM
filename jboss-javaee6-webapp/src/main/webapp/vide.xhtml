@@ -26,9 +26,9 @@
 		<h:form>
 			 <h:panelGrid columns="2">
 	           <h:outputText value="Email"></h:outputText>
-	           <h:inputText value="#{loginBean.email}"></h:inputText>
+	           <h:inputText class="newsletter_input" value="#{loginBean.email}"></h:inputText>
 	           <h:outputText value="Password"></h:outputText>
-	           <h:inputSecret value="#{loginBean.password}"></h:inputSecret>
+	           <h:inputSecret class="newsletter_input" value="#{loginBean.password}"></h:inputSecret>
 	       	</h:panelGrid>
 	      	<h:commandButton value="Login" action="#{loginBean.login}"></h:commandButton>
 		   </h:form>
