@@ -26,19 +26,20 @@ insert into Client (nom,prenom, email, telephone,password) values ('Inconnue', '
 
 
 
-insert into Panier (clientConteneur_idClient,coutTotal,nbItems) values (1,55,2);
-insert into Panier (clientConteneur_idClient,coutTotal,nbItems) values (2,175,1);
-insert into Panier (clientConteneur_idClient,coutTotal,nbItems) values (3,22,1);
-insert into Panier (clientConteneur_idClient,coutTotal,nbItems) values (4,55,1);
+insert into Panier (clientConteneur_idClient,coutTotal,nbItems) values (1,0,0);
+insert into Panier (clientConteneur_idClient,coutTotal,nbItems) values (2,0,0);
+insert into Panier (clientConteneur_idClient,coutTotal,nbItems) values (3,0,0);
+insert into Panier (clientConteneur_idClient,coutTotal,nbItems) values (4,0,0);
+insert into Panier (clientConteneur_idClient,coutTotal,nbItems) values (5,0,0);
 
 insert into Livre (nom,nbPages) values ('Le chemin de la vie', 175) ;
 insert into Livre (nom,nbPages) values ('Le chemin de la mort', 220) ;
 insert into Livre (nom,nbPages) values ('Le retour de Gandhi', 1500) ;
 insert into Livre (nom,nbPages) values ('Un enfant qui savait lire', 53) ;
-insert into Commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,AchatFait,ventesProposer,idVenteLivre,listCommande,tempsEnchere) values ('2010-12-02', 'jdhsfdl', 1 , 73,73,'2010-12-02',2 ,2,1,1,2);
-insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,listCommande,tempsEnchere) values ('2010-12-02', 'tutu', 0 , 34,34,'2010-12-02' ,2,2,3,2);
-insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,listCommande,tempsEnchere) values ('2010-12-02', 'titi', 0 , 33,33,'2010-12-02' ,4,3,2,2);
-insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,listCommande,tempsEnchere) values ('2010-12-02', 'toto', 1 , 383,383,'2010-12-02' ,3,4,1,2);
-insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,listCommande,tempsEnchere) values ('2010-12-02', 'toto', 1 , 383,383,'2010-12-02' ,3,4,4,2);
-insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,listCommande,tempsEnchere) values ('2010-12-02', 'toto', 1 , 383,383,'2010-12-02' ,1,1,4,2);
+insert into Commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,tempsEnchere) values ('2010-12-02', 'jdhsfdl', 1 , 73,73,'2010-12-02',2,1,2);
+insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,tempsEnchere) values ('2010-12-02', 'tutu', 0 , 34,34,'2010-12-02' ,2,3,2);
+insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,tempsEnchere) values ('2010-12-02', 'titi', 0 , 33,33,'2010-12-02' ,4,2,2);
+insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,tempsEnchere) values ('2010-12-02', 'toto', 1 , 383,383,'2010-12-02' ,3,1,2);
+insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,tempsEnchere) values ('2010-12-02', 'toto', 1 , 383,383,'2010-12-02' ,3,4,2);
+insert into commande (endDate,image,isEnchere,montantBase,nomtantActuel,startDate,ventesProposer,idVenteLivre,tempsEnchere) values ('2010-12-02', 'toto', 1 , 383,383,'2010-12-02' ,1,4,2);
 
