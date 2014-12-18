@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#achatLivre.xhtml" PATH="/achatLivre.xhtml"
+  SHAPE="368,136,50,25" model-entity="JSFProcessGroup" persistent="true"/>
+ <PROCESS-ITEM NAME="rules:#vente.xhtml" PATH="/vente.xhtml"
+  SHAPE="592,416,50,25" model-entity="JSFProcessGroup" persistent="true"/>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
-  SHAPE="176,120,50,41" model-entity="JSFProcessGroup">
+  SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
    PATH="/login.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="achatLivre::#achatLivre.xhtml" NAME="output"
@@ -9,6 +13,4 @@
     TITLE="achatLivre" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#achatLivre.xhtml" PATH="/achatLivre.xhtml"
-  SHAPE="368,136,50,25" model-entity="JSFProcessGroup" persistent="true"/>
 </PROCESS>
